@@ -14,7 +14,6 @@ package com.hw.thomasfrow.invenfc;
 
 public class ItemDataSource {
 
-    // Database fields
     private SQLiteDatabase database;
     private MySQLiteHelper dbHelper;
     private String[] allColumns = {
@@ -38,14 +37,14 @@ public class ItemDataSource {
         dbHelper.close();
     }
 
-    public Item createItem(String item) {
+    public Item createItem(int ownerID, String name, String room, String brand, String model, String comment ) {
         ContentValues values = new ContentValues();
-        values.put(MySQLiteHelper.OWNERID, item);
-        values.put(MySQLiteHelper.NAME, item);
-        values.put(MySQLiteHelper.ROOM, item);
-        values.put(MySQLiteHelper.BRAND, item);
-        values.put(MySQLiteHelper.MODEL, item);
-        values.put(MySQLiteHelper.COMMENT, item);
+        values.put(MySQLiteHelper.OWNERID, ownerID);
+        values.put(MySQLiteHelper.NAME, name);
+        values.put(MySQLiteHelper.ROOM, room);
+        values.put(MySQLiteHelper.BRAND, brand);
+        values.put(MySQLiteHelper.MODEL, model);
+        values.put(MySQLiteHelper.COMMENT, comment);
 
 
         long insertId = database.insert(MySQLiteHelper.DATABASE_TABLE, null,
@@ -53,6 +52,7 @@ public class ItemDataSource {
         Cursor cursor = database.query(MySQLiteHelper.DATABASE_TABLE,
                 allColumns, MySQLiteHelper.ID + " = " + insertId, null,
                 null, null, null);
+        System.out.println(values.toString());
         cursor.moveToFirst();
         Item newItem = cursorToItem(cursor);
         cursor.close();
@@ -78,9 +78,18 @@ public class ItemDataSource {
             items.add(item);
             cursor.moveToNext();
         }
-        // make sure to close the cursor
         cursor.close();
+
         return items;
+    }
+
+    public Item getItemByID(int id){
+        Cursor query = database.rawQuery("SELECT * FROM "+ MySQLiteHelper.DATABASE_TABLE + " WHERE "+MySQLiteHelper.ID+" = "+ id , null);
+        query.moveToFirst();
+        Item item =  cursorToItem(query);
+        query.close();
+        return item;
+
     }
 
     private Item cursorToItem(Cursor cursor) {

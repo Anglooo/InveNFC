@@ -42,6 +42,7 @@ public class MainActivity extends ActionBarActivity {
     public void sendMessage(View view) {
 
         Intent intent = new Intent(this, viewItem.class);
+        intent.putExtra("id", "0");
         startActivity(intent);
     }
 

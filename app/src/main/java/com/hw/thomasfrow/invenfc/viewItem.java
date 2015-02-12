@@ -4,14 +4,34 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.LayoutInflater;
+import android.widget.TextView;
+
 
 
 public class viewItem extends ActionBarActivity {
+
+    private ItemDataSource datasource;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_item);
+        int id = getIntent().getExtras().getInt("id");
+        System.out.println(id);
+
+        datasource = new ItemDataSource(this);
+        datasource.open();
+
+        Item item = datasource.getItemByID(id);
+
+        TextView nameView = new TextView(this);
+        nameView = (TextView)findViewById(R.id.enterName);
+        nameView.append(item.getName());
+
+
+
     }
 
 
