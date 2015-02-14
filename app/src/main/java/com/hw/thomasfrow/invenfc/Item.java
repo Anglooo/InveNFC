@@ -74,6 +74,9 @@ public class Item {
     // Will be used by the ArrayAdapter in the ListView
     @Override
     public String toString() {
-        return name;
+
+        String output = "name " + name + " id " + id + " owner " +ownerID;
+
+        return output;
     }
 }

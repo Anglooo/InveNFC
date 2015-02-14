@@ -12,19 +12,19 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/mainLayout"
         android:weightSum="1">
 
         <ImageView
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:id="@+id/itemImageView"
             android:layout_marginBottom="10dp"
             android:layout_gravity="center_horizontal"
-            android:background="@android:color/holo_blue_bright"
+            android:background="@android:color/black"
             android:clickable="true" />
 
         <LinearLayout
@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="ID:"
+                android:text="Item ID:"
                 android:id="@+id/itemIdView"
                 android:layout_marginBottom="10dp" />
 
@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Room Placeholder"
-                android:id="@+id/RoomOutView"
+                android:id="@+id/outRoomView"
                 android:layout_marginLeft="5dp" />
         </LinearLayout>
 
@@ -115,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Brand Placeholder"
-                android:id="@+id/BrandOutView"
+                android:id="@+id/outBrandView"
                 android:layout_marginLeft="5dp" />
         </LinearLayout>
 
@@ -137,8 +137,52 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Model Placeholder"
-                android:id="@+id/modelOutView"
+                android:id="@+id/outModelView"
                 android:layout_marginLeft="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Comment:"
+                android:id="@+id/itemCommentView"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Model Placeholder"
+                android:id="@+id/outCommentView"
+                android:layout_marginLeft="5dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/buttonView">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:onClick="loadEdit"
+                android:id="@+id/buttonChange" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                android:onClick="confirmDelete"
+                android:id="@+id/buttonDelete" />
         </LinearLayout>
 
 

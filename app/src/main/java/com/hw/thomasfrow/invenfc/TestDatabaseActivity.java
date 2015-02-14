@@ -25,7 +25,7 @@ public class TestDatabaseActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_database);
 
-        datasource = new ItemDataSource(this);
+        datasource = new ItemDataSource();
         datasource.open();
 
         List<Item> values = datasource.getAllItems();
@@ -106,6 +106,5 @@ public class TestDatabaseActivity extends ListActivity {
         datasource.close();
         super.onPause();
     }
-
 } 
 

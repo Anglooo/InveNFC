@@ -11,7 +11,8 @@ import android.widget.TextView;
 
 public class viewItem extends ActionBarActivity {
 
-    private ItemDataSource datasource;
+    private ItemDataSource dataSource;
+
 
 
     @Override
@@ -19,18 +20,37 @@ public class viewItem extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_item);
         int id = getIntent().getExtras().getInt("id");
-        System.out.println(id);
 
-        datasource = new ItemDataSource(this);
-        datasource.open();
+        dataSource = new ItemDataSource();
+        dataSource.open();
 
-        Item item = datasource.getItemByID(id);
-
-        TextView nameView = new TextView(this);
-        nameView = (TextView)findViewById(R.id.enterName);
-        nameView.append(item.getName());
+        System.out.print(id);
 
 
+        Item item = dataSource.getItemByID(id);
+
+        TextView editView;
+
+        editView = (TextView)findViewById(R.id.outIDView);
+        editView.setText(Integer.toString(item.getId()));
+
+        editView = (TextView)findViewById(R.id.outNameView);
+        editView.setText(item.getName());
+
+        editView = (TextView)findViewById(R.id.outBrandView);
+        editView.setText(item.getBrand());
+
+        editView = (TextView)findViewById(R.id.outModelView);
+        editView.setText(item.getModel());
+
+        editView = (TextView)findViewById(R.id.outRoomView);
+        editView.setText(item.getRoom());
+
+        editView = (TextView)findViewById(R.id.outCommentView);
+        editView.setText(item.getComment());
+
+
+        dataSource.close();
 
     }
 

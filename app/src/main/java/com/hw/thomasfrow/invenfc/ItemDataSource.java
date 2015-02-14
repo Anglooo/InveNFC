@@ -18,15 +18,15 @@ public class ItemDataSource {
     private MySQLiteHelper dbHelper;
     private String[] allColumns = {
             MySQLiteHelper.ID,
-            MySQLiteHelper.NAME,
             MySQLiteHelper.OWNERID,
+            MySQLiteHelper.NAME,
             MySQLiteHelper.ROOM,
             MySQLiteHelper.MODEL,
             MySQLiteHelper.BRAND,
             MySQLiteHelper.COMMENT };
 
-    public ItemDataSource(Context context) {
-        dbHelper = new MySQLiteHelper(context);
+    public ItemDataSource() {
+        dbHelper = new MySQLiteHelper(invenfc.getAppContext());
     }
     
     public void open() throws SQLException {
@@ -83,8 +83,28 @@ public class ItemDataSource {
         return items;
     }
 
+    public List<Item> getItemsByOwner(int ownerID) {
+        List<Item> items = new ArrayList<Item>();
+
+        Cursor cursor = database.query(MySQLiteHelper.DATABASE_TABLE,
+                allColumns, null, null, null, null, null);
+        Cursor query = database.rawQuery("SELECT * FROM Items WHERE ownerID = "+ ownerID, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Item item = cursorToItem(cursor);
+            items.add(item);
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return items;
+    }
+
     public Item getItemByID(int id){
-        Cursor query = database.rawQuery("SELECT * FROM "+ MySQLiteHelper.DATABASE_TABLE + " WHERE "+MySQLiteHelper.ID+" = "+ id , null);
+        Cursor query = database.rawQuery("SELECT * FROM Items WHERE id = "+id, null);
+
+        System.out.println(query.toString());
         query.moveToFirst();
         Item item =  cursorToItem(query);
         query.close();
@@ -94,6 +114,7 @@ public class ItemDataSource {
 
     private Item cursorToItem(Cursor cursor) {
         Item item = new Item();
+
         item.setId(cursor.getInt(0));
         item.setOwnerID(cursor.getInt(1));
         item.setName(cursor.getString(2));
@@ -104,5 +125,7 @@ public class ItemDataSource {
 
         return item;
     }
+
+
 }
 
