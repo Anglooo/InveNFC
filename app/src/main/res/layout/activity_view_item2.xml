@@ -1,0 +1,243 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hw.thomasfrow.invenfc.viewItem"
+    android:clickable="false"
+    android:background="#ffc9ccce"
+    android:focusableInTouchMode="false"
+    android:id="@+id/fullScreenLayout">
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+        android:id="@+id/itemImageView"
+        android:background="@android:color/holo_green_dark"
+        android:clickable="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mainLayout"
+        android:weightSum="1"
+        android:layout_below="@id/itemImageView"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="ITEM ID"
+                android:id="@+id/itemIdView"
+                android:layout_marginBottom="2dp"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:typeface="normal"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="ID Placeholder"
+                android:id="@+id/outIDView"
+                android:layout_marginLeft="5dp"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:typeface="normal"
+                android:layout_gravity="center_horizontal"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="ROOM"
+                android:id="@+id/itemRoomView"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="2dp"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:typeface="normal"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Room Placeholder"
+                android:id="@+id/outRoomView"
+                android:layout_marginLeft="5dp"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:typeface="normal"
+                android:textSize="15dp"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="BRAND"
+                android:id="@+id/itemBrandView"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="2dp"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:typeface="normal"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Brand Placeholder"
+                android:id="@+id/outBrandView"
+                android:layout_marginLeft="5dp"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:typeface="normal"
+                android:textSize="15dp"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="MODEL"
+                android:id="@+id/itemModelView"
+                android:layout_marginBottom="2dp"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:typeface="normal"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Model Placeholder"
+                android:id="@+id/outModelView"
+                android:layout_marginLeft="5dp"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:typeface="normal"
+                android:textSize="15dp"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="COMMENT"
+                android:id="@+id/itemCommentView"
+                android:layout_marginBottom="2dp"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:typeface="normal"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Model Placeholder"
+                android:id="@+id/outCommentView"
+                android:layout_marginLeft="5dp"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:typeface="normal"
+                android:textSize="15dp"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/buttonView"
+            android:layout_gravity="center_horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:onClick="onClick"
+                android:id="@+id/buttonChange" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                android:onClick="onClick"
+                android:id="@+id/buttonDelete" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/fab"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_alignBottom="@id/itemImageView"
+        android:layout_marginBottom="-30dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/round_button"
+        />
+
+    <Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/toolbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?android:attr/actionBarSize"
+        android:background="@android:color/transparent"
+        android:title="&quot;hello&quot;" />
+
+</RelativeLayout>

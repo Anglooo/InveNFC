@@ -3,6 +3,7 @@ package com.hw.thomasfrow.invenfc;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,14 +11,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.CheckBox;
 import android.content.ContentValues;
 import android.widget.Toast;
+import android.app.Activity;
+import android.widget.Toolbar;
 
 
 
-public class viewItem extends ActionBarActivity {
+public class viewItem extends Activity {
 
     private ItemDataSource dataSource;
     private View view2;
@@ -29,7 +33,7 @@ public class viewItem extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_item);
+        setContentView(R.layout.activity_view_item2);
         int id = getIntent().getExtras().getInt("id");
 
         dataSource = new ItemDataSource();
@@ -49,13 +53,20 @@ public class viewItem extends ActionBarActivity {
 
         TextView editView;
 
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar.setTitle("ITEM: " + item.getName());
+
+        ImageView imageView = (ImageView)findViewById(R.id.itemImageView);
+
+
+
 
         editView = (TextView)this.findViewById(R.id.outIDView);
         System.out.print(R.id.outIDView);
         editView.setText(Integer.toString(item.getId()));
 
-        editView = (TextView)this.findViewById(R.id.outNameView);
-        editView.setText(item.getName());
+        //editView = (TextView)this.findViewById(R.id.outNameView);
+        //editView.setText(item.getName());
 
         editView = (TextView)findViewById(R.id.outBrandView);
         editView.setText(item.getBrand());
@@ -218,9 +229,8 @@ public class viewItem extends ActionBarActivity {
                             }
                         })
 
-                        .setPositiveButton("Confirm" ,new DialogInterface.OnClickListener(){
-                            public void onClick(DialogInterface dialog, int which){
-
+                        .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
 
 
                             }

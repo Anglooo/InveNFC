@@ -2,14 +2,15 @@ package com.hw.thomasfrow.invenfc;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+
+import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.content.Context;
 
 
-public class invenfc extends ActionBarActivity {
+public class invenfc extends Activity {
 
     private static Context context;
 

@@ -1,9 +1,9 @@
 package com.hw.thomasfrow.invenfc;
 
-import android.content.Context;
+
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
@@ -11,11 +11,12 @@ import android.widget.TextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.app.Activity;
 
 import java.util.List;
 
 
-public class showInventoryActivity extends ActionBarActivity {
+public class showInventoryActivity extends Activity {
 
     private ItemDataSource dataSource;
 

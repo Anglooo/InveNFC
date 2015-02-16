@@ -6,7 +6,7 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.hw.thomasfrow.invenfc.viewItem"
     android:clickable="false"
-    android:background="@android:color/holo_blue_bright"
+    android:background="#ffc9ccce"
     android:focusableInTouchMode="false">
 
     <LinearLayout
@@ -38,7 +38,10 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Item ID:"
                 android:id="@+id/itemIdView"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="10dp"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:typeface="normal" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -46,7 +49,10 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="ID Placeholder"
                 android:id="@+id/outIDView"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginLeft="5dp"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:typeface="normal" />
         </LinearLayout>
 
         <LinearLayout
@@ -62,7 +68,10 @@
                 android:text="Name:"
                 android:id="@+id/nameView"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="10dp"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:typeface="normal" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -70,7 +79,10 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Name Placeholder"
                 android:id="@+id/outNameView"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginLeft="5dp"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:typeface="normal" />
         </LinearLayout>
 
         <LinearLayout
@@ -85,7 +97,10 @@
                 android:text="Room:"
                 android:id="@+id/itemRoomView"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="10dp"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:typeface="normal" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -93,7 +108,10 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Room Placeholder"
                 android:id="@+id/outRoomView"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginLeft="5dp"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:typeface="normal" />
         </LinearLayout>
 
         <LinearLayout
@@ -108,7 +126,10 @@
                 android:text="Brand:"
                 android:id="@+id/itemBrandView"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="10dp"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:typeface="normal" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -116,7 +137,10 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Brand Placeholder"
                 android:id="@+id/outBrandView"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginLeft="5dp"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:typeface="normal" />
         </LinearLayout>
 
         <LinearLayout
@@ -130,7 +154,10 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Model:"
                 android:id="@+id/itemModelView"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="10dp"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:typeface="normal" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -138,7 +165,10 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Model Placeholder"
                 android:id="@+id/outModelView"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginLeft="5dp"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:typeface="normal" />
         </LinearLayout>
 
         <LinearLayout
@@ -152,7 +182,10 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Comment:"
                 android:id="@+id/itemCommentView"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="10dp"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:typeface="normal" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -160,7 +193,10 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Model Placeholder"
                 android:id="@+id/outCommentView"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginLeft="5dp"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:typeface="normal" />
 
         </LinearLayout>
 
