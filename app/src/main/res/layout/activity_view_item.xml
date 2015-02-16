@@ -174,14 +174,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Edit"
-                android:onClick="loadEdit"
+                android:onClick="onClick"
                 android:id="@+id/buttonChange" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Delete"
-                android:onClick="confirmDelete"
+                android:onClick="onClick"
                 android:id="@+id/buttonDelete" />
         </LinearLayout>
 

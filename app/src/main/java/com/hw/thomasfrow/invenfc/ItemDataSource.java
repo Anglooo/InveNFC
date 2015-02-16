@@ -126,6 +126,13 @@ public class ItemDataSource {
         return item;
     }
 
+    public int updateItem(int ID, ContentValues content){
+
+        int success = database.update(MySQLiteHelper.DATABASE_TABLE, content, MySQLiteHelper.ID+"="+ID, null);
+
+        return success;
+    }
+
 
 }
 

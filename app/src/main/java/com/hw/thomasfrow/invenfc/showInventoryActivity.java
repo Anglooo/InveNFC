@@ -7,10 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.ImageView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,6 +25,12 @@ public class showInventoryActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_inventory);
 
+        drawInterface();
+
+
+    }
+
+    public void drawInterface(){
         dataSource = new ItemDataSource();
         dataSource.open();
 
@@ -38,6 +41,7 @@ public class showInventoryActivity extends ActionBarActivity {
         LayoutInflater inflater = LayoutInflater.from(this);
 
         LinearLayout inside = (LinearLayout)findViewById(R.id.list_item);
+        inside.removeAllViews();
 
         for(Item it : items){
 
@@ -72,11 +76,6 @@ public class showInventoryActivity extends ActionBarActivity {
             });
 
         }
-
-        dataSource.close();
-
-
-
     }
 
 
@@ -102,5 +101,17 @@ public class showInventoryActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        drawInterface();
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        dataSource.close();
+        super.onPause();
     }
 }
