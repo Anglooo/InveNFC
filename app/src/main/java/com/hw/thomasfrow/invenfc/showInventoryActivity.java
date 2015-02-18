@@ -2,6 +2,7 @@ package com.hw.thomasfrow.invenfc;
 
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,7 +29,7 @@ public class showInventoryActivity extends Activity {
     private ItemDataSource dataSource;
     private View view2;
     private int ownerID;
-
+    private int ownID;
 
 
     @Override
@@ -36,8 +37,12 @@ public class showInventoryActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_inventory);
 
-        ownerID = getIntent().getExtras().getInt("userID");
-        Log.i("ownerID",Integer.toString(ownerID));
+        //ownerID = getIntent().getExtras().getInt("userID");
+
+        SharedPreferences prefs = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+        boolean loggedInStatus = prefs.getBoolean("isLoggedIn",false);
+        ownID = prefs.getInt("userID",9999);
+        Log.i("ownID1", Integer.toString(prefs.getInt("userID",9999)));
 
         drawInterface();
 
@@ -69,8 +74,6 @@ public class showInventoryActivity extends Activity {
 
         });
 
-        toolbar.setNavigationIcon(R.drawable.ic_action_name);
-
 
     }
 
@@ -80,7 +83,7 @@ public class showInventoryActivity extends Activity {
         dataSource.open();
 
 
-        List<Item> items = dataSource.getItemsByOwner(ownerID);
+        List<Item> items = dataSource.getItemsByOwner(ownID);
 
         System.out.println(items.toString());
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -246,7 +249,8 @@ public class showInventoryActivity extends Activity {
 
                         int owner = 0;
 
-                        dataSource.createItem(owner, nameEdit.getText().toString(), roomEdit.getText().toString(), brandEdit.getText().toString(), modelEdit.getText().toString(), commentEdit.getText().toString());
+                        Log.i("ownID", Integer.toString(ownID));
+                        dataSource.createItem(ownID, nameEdit.getText().toString(), roomEdit.getText().toString(), brandEdit.getText().toString(), modelEdit.getText().toString(), commentEdit.getText().toString());
                         drawInterface();
 
                     }

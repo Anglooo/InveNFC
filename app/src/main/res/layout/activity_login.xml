@@ -5,9 +5,7 @@
     android:clickable="false"
     android:background="#ffc9ccce"
     android:focusableInTouchMode="false"
-    android:id="@+id/fullScreenLayout"
-    android:backgroundTint="#6c151815"
-    android:backgroundTintMode="src_over">
+    android:id="@+id/fullScreenLayout">
 
     <Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/toolbar"

@@ -28,8 +28,7 @@ public class invenfc extends Activity {
         if(checkLoggedIn()){
             //Intent intent = new Intent(this, viewItem.class);
             SharedPreferences prefs = getApplicationContext().getSharedPreferences("userDetails",Context.MODE_PRIVATE);
-            int userID = prefs.getInt("ownerID",12345);
-            Log.i("prefsOut",prefs.toString());
+            int userID = prefs.getInt("userID",12345);
 
             Log.i("ownerID1",Integer.toString(userID));
             Intent intent = new Intent(this,showInventoryActivity.class);

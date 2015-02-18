@@ -93,9 +93,9 @@ public class ItemDataSource {
     public List<Item> getItemsByOwner(int ownerID) {
         List<Item> items = new ArrayList<Item>();
 
-        Cursor cursor = database.query(MySQLiteHelper.DATABASE_TABLE,
-                allColumns, null, null, null, null, null);
-        Cursor query = database.rawQuery("SELECT * FROM Items WHERE ownerID = "+ ownerID, null);
+        //Cursor cursor = database.query(MySQLiteHelper.DATABASE_TABLE,
+          //      allColumns, null, null, null, null, null);
+        Cursor cursor = database.rawQuery("SELECT * FROM Items WHERE ownerID = "+ ownerID, null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {

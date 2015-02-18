@@ -1,28 +1,22 @@
 package com.hw.thomasfrow.invenfc;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.CheckBox;
 import android.content.ContentValues;
 import android.widget.Toast;
-import android.app.Activity;
 import android.widget.Toolbar;
 
 
@@ -32,9 +26,12 @@ public class viewItem extends Activity{
     private ItemDataSource dataSource;
     private View view2;
     private Item item;
+    private boolean loggedInStatus;
+    private int ownID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_item2);
         int id = getIntent().getExtras().getInt("id");
@@ -42,7 +39,46 @@ public class viewItem extends Activity{
         dataSource = new ItemDataSource();
         dataSource.open();
 
-        System.out.print(id);
+        item = dataSource.getItemByID(id);
+
+        SharedPreferences prefs = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+        boolean loggedInStatus = prefs.getBoolean("isLoggedIn",false);
+        ownID = prefs.getInt("userID",9999);
+
+        if(loggedInStatus != true){
+            new AlertDialog.Builder(this)
+                    .setTitle("You are not logged in.")
+                    .setCancelable(false)
+                    .setView(R.layout.dialog_go_login)
+                    .setPositiveButton("Login",new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                            startActivity(intent);
+
+                        }
+                    })
+                    .show();
+        }
+
+        if(ownID != item.getOwnerID()){
+            new AlertDialog.Builder(this)
+                    .setTitle("Permission Denied")
+                    .setView(R.layout.dialog_not_owner)
+                    .setCancelable(false)
+                    .setPositiveButton("View Inventory", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getApplicationContext(),showInventoryActivity.class);
+                            startActivity(intent);
+
+                        }
+                    })
+                    .show();
+        }
+
 
         updateInterface(id);
 
@@ -74,6 +110,18 @@ public class viewItem extends Activity{
 
         });
 
+        toolbar.setNavigationIcon(R.drawable.ic_action_name);
+
+        toolbar.setNavigationOnClickListener(new Toolbar.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(),showInventoryActivity.class);
+                intent.putExtra("userID",ownID);
+                startActivity(intent);
+            }
+        });
+
 
     }
 
@@ -89,7 +137,6 @@ public class viewItem extends Activity{
         toolbar.setTitle("ITEM: " + item.getName());
 
         ImageView imageView = (ImageView)findViewById(R.id.itemImageView);
-
 
 
         editView = (TextView)this.findViewById(R.id.outIDView);
@@ -177,10 +224,6 @@ public class viewItem extends Activity{
                         brandEdit.setHint(item.getBrand());
                         modelEdit.setHint(item.getModel());
                         commentEdit.setHint(item.getComment());
-
-                        int owner = 0;
-
-                        //Item item = datasource.createItem(owner,nameEdit.getText().toString(),roomEdit.getText().toString(),brandEdit.getText().toString(),modelEdit.getText().toString(),commentEdit.getText().toString());
 
                         ContentValues updateItem = new ContentValues();
 

@@ -75,7 +75,7 @@ public class LoginActivity extends Activity{
                 SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("userDetails", getApplicationContext().MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putBoolean("isLoggedIn", true);
-                editor.putInt("ownerID", userID);
+                editor.putInt("userID", userID);
                 editor.commit();
 
                 Intent intent = new Intent(this, showInventoryActivity.class);
@@ -89,6 +89,11 @@ public class LoginActivity extends Activity{
         }
 
 
+
+    }
+
+    @Override
+    public void onBackPressed(){
 
     }
 
