@@ -4,7 +4,9 @@ package com.hw.thomasfrow.invenfc;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -17,7 +19,6 @@ import android.view.View.OnClickListener;
 import android.app.Activity;
 import android.widget.Toast;
 import android.widget.Toolbar;
-import android.support.v4.widget.DrawerLayout;
 
 import java.util.List;
 
@@ -26,16 +27,17 @@ public class showInventoryActivity extends Activity {
 
     private ItemDataSource dataSource;
     private View view2;
+    private int ownerID;
 
-    private String[] mPlanetTitles;
-    private DrawerLayout mDrawerLayout;
-    //private ListView mDrawerList;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_inventory);
+
+        ownerID = getIntent().getExtras().getInt("userID");
+        Log.i("ownerID",Integer.toString(ownerID));
 
         drawInterface();
 
@@ -53,6 +55,12 @@ public class showInventoryActivity extends Activity {
                         addItemInterface();
 
                         return true;
+
+                    case R.id.action_logOut:
+
+                        logOutInterface();
+
+                        return true;
                 }
 
                 return false;
@@ -61,18 +69,7 @@ public class showInventoryActivity extends Activity {
 
         });
 
-        //toolbar.setNavigationIcon(R.mipmap.navigation_black_icon);
         toolbar.setNavigationIcon(R.drawable.ic_action_name);
-
-       /* mPlanetTitles = getResources().getStringArray(R.array.planets_array);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.left_drawer);
-
-        // Set the adapter for the list view
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.drawer_list_item, mPlanetTitles));
-        // Set the list's click listener
-        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());*/
 
 
     }
@@ -83,7 +80,7 @@ public class showInventoryActivity extends Activity {
         dataSource.open();
 
 
-        List<Item> items = dataSource.getItemsByOwner(0);
+        List<Item> items = dataSource.getItemsByOwner(ownerID);
 
         System.out.println(items.toString());
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -214,8 +211,7 @@ public class showInventoryActivity extends Activity {
     }
 
     public void onClick(final View view) {
-        @SuppressWarnings("unchecked") final
-        Item item = null;
+
         switch (view.getId()) {
             case R.id.fabAdd:
 
@@ -266,6 +262,45 @@ public class showInventoryActivity extends Activity {
                 })
                 .show();
     }
+
+    public void logOutInterface(){
+
+        LayoutInflater inflater = this.getLayoutInflater();
+        view2 = inflater.inflate(R.layout.dialog_log_out, null);
+
+        new AlertDialog.Builder(this)
+                .setTitle("Log Out")
+                .setView(view2)
+
+                .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        int i = 0;
+
+                        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("userDetails", getApplicationContext().MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putBoolean("isLoggedIn", false);
+                        editor.putInt("userID", 0 );
+                        editor.commit();
+
+                        Intent intent = new Intent(getApplicationContext(), invenfc.class);
+                        startActivity(intent);
+
+                    }
+                })
+
+                .setCancelable(true)
+
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+                    }
+                })
+                .show();
+    }
+
 
 
 

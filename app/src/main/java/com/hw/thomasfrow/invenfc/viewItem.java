@@ -11,8 +11,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.CheckBox;
@@ -23,14 +27,11 @@ import android.widget.Toolbar;
 
 
 
-public class viewItem extends Activity {
+public class viewItem extends Activity{
 
     private ItemDataSource dataSource;
     private View view2;
     private Item item;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +73,7 @@ public class viewItem extends Activity {
 
 
         });
+
 
     }
 
@@ -314,5 +316,25 @@ public class viewItem extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+
+    private class Sample {
+        int titleResId;
+        int descriptionResId;
+        Intent intent;
+
+        private Sample(int titleResId, int descriptionResId, Intent intent) {
+            this.intent = intent;
+            this.titleResId = titleResId;
+            this.descriptionResId = descriptionResId;
+        }
+
+        private Sample(int titleResId, int descriptionResId,
+                       Class<? extends Activity> activityClass) {
+            this(titleResId, descriptionResId,
+                    new Intent(viewItem.this, activityClass));
+        }
     }
 }

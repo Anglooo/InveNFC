@@ -7,4 +7,10 @@
         android:title="Add Item"
         android:orderInCategory="100"
         android:showAsAction="never" />
+    <item android:id="@+id/action_logOut"
+        android:title="Log Out"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+
+
 </menu>

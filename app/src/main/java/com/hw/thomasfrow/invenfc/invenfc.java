@@ -8,11 +8,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.*;
 
 
 public class invenfc extends Activity {
 
     private static Context context;
+    private boolean loggedIn = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,13 +23,38 @@ public class invenfc extends Activity {
         setContentView(R.layout.activity_main);
         invenfc.context = getApplicationContext();
 
-        //Intent intent = new Intent(this, showInventoryActivity.class);
-        //startActivity(intent);
+        Log.i("checkLoggedIn",Boolean.toString(checkLoggedIn()));
 
-        Intent intent = new Intent(this, TestActivity.class);
-        startActivity(intent);
+        if(checkLoggedIn()){
+            //Intent intent = new Intent(this, viewItem.class);
+            SharedPreferences prefs = getApplicationContext().getSharedPreferences("userDetails",Context.MODE_PRIVATE);
+            int userID = prefs.getInt("ownerID",12345);
+            Log.i("prefsOut",prefs.toString());
+
+            Log.i("ownerID1",Integer.toString(userID));
+            Intent intent = new Intent(this,showInventoryActivity.class);
+            intent.putExtra("userID",userID);
+            startActivity(intent);
+
+        }else{
+
+            Intent intent = new Intent(this,LoginActivity.class);
+            // Intent intent = new Intent(this, TestActivity.class);
+            startActivity(intent);
+        }
+
+
 
     }
+
+    private boolean checkLoggedIn() {
+
+        SharedPreferences prefs = getApplicationContext().getSharedPreferences("userDetails",Context.MODE_PRIVATE);
+        boolean defaultLogin = false;
+
+        return prefs.getBoolean("isLoggedIn",defaultLogin);
+
+     }
 
     public static Context getAppContext() {
         return invenfc.context;
@@ -55,17 +83,6 @@ public class invenfc extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void sendMessage2(View view) {
-
-        Intent intent = new Intent(this, TestDatabaseActivity.class);
-        startActivity(intent);
-    }
-
-    public void sendMessage3(View view) {
-
-        Intent intent = new Intent(this, showInventoryActivity.class);
-        startActivity(intent);
-    }
 
 
 }
