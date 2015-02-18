@@ -202,26 +202,13 @@
             android:id="@+id/buttonView"
             android:layout_gravity="center_horizontal">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Edit"
-                android:onClick="onClick"
-                android:id="@+id/buttonChange" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Delete"
-                android:onClick="onClick"
-                android:id="@+id/buttonDelete" />
         </LinearLayout>
 
 
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/fab"
+        android:id="@+id/fabCamera"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_alignParentRight="true"
@@ -229,7 +216,8 @@
         android:layout_alignBottom="@id/itemImageView"
         android:layout_marginBottom="-30dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/round_button"
+        android:background="@drawable/button_camera"
+        android:onClick="onClick"
         />
 
     <Toolbar xmlns:android="http://schemas.android.com/apk/res/android"

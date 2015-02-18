@@ -19,6 +19,13 @@ public class invenfc extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         invenfc.context = getApplicationContext();
+
+        //Intent intent = new Intent(this, showInventoryActivity.class);
+        //startActivity(intent);
+
+        Intent intent = new Intent(this, TestActivity.class);
+        startActivity(intent);
+
     }
 
     public static Context getAppContext() {

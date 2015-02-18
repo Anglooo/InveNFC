@@ -28,17 +28,19 @@
             android:name=".invenfc"
             android:exported="true"
             android:label="@string/title_activity_main"
-            android:theme="@android:style/Theme.Material.NoActionBar">
+            android:theme="@android:style/Theme.Material.Light.NoActionBar" >
         </activity>
         <activity
             android:name=".viewItem"
+            android:exported="true"
             android:label="@string/title_activity_view_item"
-            android:theme="@android:style/Theme.Material.NoActionBar">
-
+            android:theme="@android:style/Theme.Material.Light.NoActionBar" >
             <intent-filter>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
-                <data android:mimeType="application/com.hw.thomasfrow.invenfc"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <data android:mimeType="application/com.hw.thomasfrow.invenfc" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
@@ -48,8 +50,16 @@
         </activity>
         <activity
             android:name=".showInventoryActivity"
+            android:exported="true"
             android:label="@string/title_activity_show_inventory"
-            android:theme="@android:style/Theme.Material.NoActionBar">
+            android:theme="@android:style/Theme.Material.Light.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".TestActivity"
+            android:label="@string/title_activity_test"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light">
+
         </activity>
     </application>
 

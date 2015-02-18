@@ -14,16 +14,18 @@
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
             android:layout_height="wrap_content"
-            android:text="Name"/>
+            android:text="Name*"/>
 
         <EditText
             android:id="@+id/enterName"
-            android:layout_width="fill_parent"
+            android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="4dp"
+            android:singleLine="true"
+            android:imeOptions="actionNext"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -41,11 +43,12 @@
 
         <EditText
             android:id="@+id/enterRoom"
-            android:layout_width="fill_parent"
+            android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
+            android:singleLine="true"
+            android:imeOptions="actionNext"
             android:layout_marginBottom="4dp" />
     </LinearLayout>
 
@@ -64,12 +67,13 @@
 
         <EditText
             android:id="@+id/enterBrand"
-            android:layout_width="fill_parent"
+            android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="4dp"
+            android:singleLine="true"
+            android:imeOptions="actionNext"/>
     </LinearLayout>
 
     <LinearLayout
@@ -87,12 +91,13 @@
 
         <EditText
             android:id="@+id/enterModel"
-            android:layout_width="fill_parent"
+            android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="4dp"
+            android:singleLine="true"
+            android:imeOptions="actionNext"/>
     </LinearLayout>
 
     <LinearLayout
@@ -110,13 +115,26 @@
 
         <EditText
             android:id="@+id/enterComment"
-            android:lines="5"
-            android:layout_width="250dp"
+            android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="4dp"
+            android:imeOptions="actionDone"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Fields marked with * can not be empty."
+            android:id="@+id/textView" />
     </LinearLayout>
 
 </LinearLayout>

@@ -22,7 +22,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginLeft="4dp"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="4dp"
+            android:singleLine="true"
+            android:imeOptions="actionNext"/>
 
         <CheckBox
             android:id="@+id/checkName"
@@ -46,7 +48,8 @@
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
             android:layout_height="wrap_content"
-            android:text="Room"/>
+            android:text="Room"
+            />
 
         <EditText
             android:id="@+id/enterRoom"
@@ -54,7 +57,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginLeft="4dp"
-
+            android:singleLine="true"
+            android:imeOptions="actionNext"
             android:layout_marginBottom="4dp" />
         <CheckBox
             android:id="@+id/checkRoom"
@@ -85,7 +89,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginLeft="4dp"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="4dp"
+            android:singleLine="true"
+            android:imeOptions="actionNext"/>
         <CheckBox
             android:id="@+id/checkBrand"
             android:layout_width="wrap_content"
@@ -115,7 +121,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginLeft="4dp"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="4dp"
+            android:singleLine="true"
+            android:imeOptions="actionNext"/>
         <CheckBox
             android:id="@+id/checkModel"
             android:layout_width="wrap_content"
@@ -145,7 +153,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginLeft="4dp"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="4dp"
+            android:imeOptions="actionNext"/>
 
         <CheckBox
             android:id="@+id/checkComment"

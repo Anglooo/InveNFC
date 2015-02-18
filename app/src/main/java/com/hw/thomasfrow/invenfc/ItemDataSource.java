@@ -21,8 +21,8 @@ public class ItemDataSource {
             MySQLiteHelper.OWNERID,
             MySQLiteHelper.NAME,
             MySQLiteHelper.ROOM,
-            MySQLiteHelper.MODEL,
             MySQLiteHelper.BRAND,
+            MySQLiteHelper.MODEL,
             MySQLiteHelper.COMMENT };
 
     public ItemDataSource() {
@@ -65,6 +65,13 @@ public class ItemDataSource {
         database.delete(MySQLiteHelper.DATABASE_TABLE, MySQLiteHelper.ID
                 + " = " + id, null);
     }
+
+    public void deleteItemByID(int id) {
+        System.out.println("Item deleted with id: " + id);
+        database.delete(MySQLiteHelper.DATABASE_TABLE, MySQLiteHelper.ID
+                + " = " + id, null);
+    }
+
 
     public List<Item> getAllItems() {
         List<Item> items = new ArrayList<Item>();
