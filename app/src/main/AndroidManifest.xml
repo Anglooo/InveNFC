@@ -2,12 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hw.thomasfrow.invenfc" >
 
-    <!-- To access Google+ APIs: -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.USE_CREDENTIALS" /> <!-- To retrieve the account name (email) as part of sign-in: -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" /> <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.NFC" />
+
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -29,16 +29,11 @@
             android:exported="true"
             android:label="@string/title_activity_main"
             android:theme="@android:style/Theme.Material.Light.NoActionBar" >
-            <intent-filter >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".viewItem"
-            android:exported="true"
-            android:label="@string/title_activity_view_item"
-            android:theme="@android:style/Theme.Material.Light.NoActionBar" >
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
@@ -46,6 +41,12 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".viewItem"
+            android:exported="true"
+            android:label="@string/title_activity_view_item"
+            android:theme="@android:style/Theme.Material.Light.NoActionBar" >
         </activity>
         <activity
             android:name=".TestDatabaseActivity"
@@ -57,6 +58,14 @@
             android:exported="true"
             android:label="@string/title_activity_show_inventory"
             android:theme="@android:style/Theme.Material.Light.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".createTagActivity"
+            android:label="@string/title_activity_create_tag" >
+        </activity>
+        <activity
+            android:name=".filteredInventoryActivity"
+            android:label="@string/title_activity_filtered_inventory" >
         </activity>
     </application>
 

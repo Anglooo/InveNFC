@@ -17,198 +17,242 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <LinearLayout
-        android:orientation="vertical"
+
+    <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/mainLayout"
-        android:weightSum="1"
-        android:layout_below="@id/itemImageView"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
+        android:id="@+id/scrollView2"
+        android:layout_below="@+id/fabOpenAddMenu"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginBottom="5dp">
+            android:layout_height="wrap_content"
+            android:id="@+id/mainLayout"
+            android:weightSum="1"
+            android:layout_below="@id/itemImageView"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="ITEM ID"
-                android:id="@+id/itemIdView"
-                android:layout_marginBottom="2dp"
-                android:textColor="#ffffffff"
-                android:textStyle="bold"
-                android:typeface="normal"
-                android:layout_gravity="center_horizontal"
-                android:textSize="20dp" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="5dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="ITEM ID"
+                    android:id="@+id/itemIdView"
+                    android:layout_marginBottom="2dp"
+                    android:textColor="#ffffffff"
+                    android:textStyle="bold"
+                    android:typeface="normal"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="ID Placeholder"
+                    android:id="@+id/outIDView"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="#ffffffff"
+                    android:textStyle="bold"
+                    android:typeface="normal"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="ROOM"
+                    android:id="@+id/itemRoomView"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="2dp"
+                    android:textColor="#ffffffff"
+                    android:textStyle="bold"
+                    android:typeface="normal"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Room Placeholder"
+                    android:id="@+id/outRoomView"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="#ffffffff"
+                    android:textStyle="bold"
+                    android:typeface="normal"
+                    android:textSize="15dp"
+                    android:layout_gravity="center_horizontal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="BRAND"
+                    android:id="@+id/itemBrandView"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="2dp"
+                    android:textColor="#ffffffff"
+                    android:textStyle="bold"
+                    android:typeface="normal"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Brand Placeholder"
+                    android:id="@+id/outBrandView"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="#ffffffff"
+                    android:textStyle="bold"
+                    android:typeface="normal"
+                    android:textSize="15dp"
+                    android:layout_gravity="center_horizontal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="MODEL"
+                    android:id="@+id/itemModelView"
+                    android:layout_marginBottom="2dp"
+                    android:textColor="#ffffffff"
+                    android:textStyle="bold"
+                    android:typeface="normal"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Model Placeholder"
+                    android:id="@+id/outModelView"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="#ffffffff"
+                    android:textStyle="bold"
+                    android:typeface="normal"
+                    android:textSize="15dp"
+                    android:layout_gravity="center_horizontal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="COMMENT"
+                    android:id="@+id/itemCommentView"
+                    android:layout_marginBottom="2dp"
+                    android:textColor="#ffffffff"
+                    android:textStyle="bold"
+                    android:typeface="normal"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Model Placeholder"
+                    android:id="@+id/outCommentView"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="#ffffffff"
+                    android:textStyle="bold"
+                    android:typeface="normal"
+                    android:textSize="15dp"
+                    android:layout_gravity="center_horizontal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="ID Placeholder"
-                android:id="@+id/outIDView"
-                android:layout_marginLeft="5dp"
-                android:textColor="#ffffffff"
-                android:textStyle="bold"
-                android:typeface="normal"
-                android:layout_gravity="center_horizontal"
-                android:textSize="15dp" />
+                android:layout_marginBottom="5dp"
+                android:layout_gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="HAS TAG?"
+                    android:id="@+id/hasTagView"
+                    android:layout_marginBottom="2dp"
+                    android:textColor="#ffffffff"
+                    android:textStyle="bold"
+                    android:typeface="normal"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Tag Placeholder"
+                    android:id="@+id/outTagView"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="#ffffffff"
+                    android:textStyle="bold"
+                    android:typeface="normal"
+                    android:textSize="15dp"
+                    android:layout_gravity="center_horizontal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:id="@+id/buttonView"
+                android:layout_gravity="center_horizontal">
+
+            </LinearLayout>
+
 
         </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginBottom="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="ROOM"
-                android:id="@+id/itemRoomView"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="2dp"
-                android:textColor="#ffffffff"
-                android:textStyle="bold"
-                android:typeface="normal"
-                android:textSize="20dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Room Placeholder"
-                android:id="@+id/outRoomView"
-                android:layout_marginLeft="5dp"
-                android:textColor="#ffffffff"
-                android:textStyle="bold"
-                android:typeface="normal"
-                android:textSize="15dp"
-                android:layout_gravity="center_horizontal" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginBottom="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="BRAND"
-                android:id="@+id/itemBrandView"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="2dp"
-                android:textColor="#ffffffff"
-                android:textStyle="bold"
-                android:typeface="normal"
-                android:textSize="20dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Brand Placeholder"
-                android:id="@+id/outBrandView"
-                android:layout_marginLeft="5dp"
-                android:textColor="#ffffffff"
-                android:textStyle="bold"
-                android:typeface="normal"
-                android:textSize="15dp"
-                android:layout_gravity="center_horizontal" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginBottom="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="MODEL"
-                android:id="@+id/itemModelView"
-                android:layout_marginBottom="2dp"
-                android:textColor="#ffffffff"
-                android:textStyle="bold"
-                android:typeface="normal"
-                android:layout_gravity="center_horizontal"
-                android:textSize="20dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Model Placeholder"
-                android:id="@+id/outModelView"
-                android:layout_marginLeft="5dp"
-                android:textColor="#ffffffff"
-                android:textStyle="bold"
-                android:typeface="normal"
-                android:textSize="15dp"
-                android:layout_gravity="center_horizontal" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginBottom="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="COMMENT"
-                android:id="@+id/itemCommentView"
-                android:layout_marginBottom="2dp"
-                android:textColor="#ffffffff"
-                android:textStyle="bold"
-                android:typeface="normal"
-                android:layout_gravity="center_horizontal"
-                android:textSize="20dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Model Placeholder"
-                android:id="@+id/outCommentView"
-                android:layout_marginLeft="5dp"
-                android:textColor="#ffffffff"
-                android:textStyle="bold"
-                android:typeface="normal"
-                android:textSize="15dp"
-                android:layout_gravity="center_horizontal" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:id="@+id/buttonView"
-            android:layout_gravity="center_horizontal">
-
-        </LinearLayout>
-
-
-    </LinearLayout>
+    </ScrollView>
 
     <ImageButton
-        android:id="@+id/fabCamera"
+        android:id="@+id/fabOpenAddMenu"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_alignParentRight="true"
@@ -216,7 +260,7 @@
         android:layout_alignBottom="@id/itemImageView"
         android:layout_marginBottom="-30dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/button_camera"
+        android:background="@drawable/button_picker_plus"
         android:onClick="onClick"
         />
 
@@ -227,5 +271,29 @@
         android:minHeight="?android:attr/actionBarSize"
         android:background="@android:color/transparent"
         android:title="&quot;hello&quot;" />
+
+    <ImageButton
+        android:id="@+id/addPhotoButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="@drawable/button_camera"
+        android:onClick="onClick"
+        android:layout_marginTop="330dp"
+        android:layout_marginRight="25dp"
+        android:visibility="gone" />
+
+    <ImageButton
+        android:id="@+id/addTagButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="@drawable/button_tag"
+        android:onClick="onClick"
+        android:layout_marginTop="385dp"
+        android:layout_marginRight="25dp"
+        android:visibility="gone" />
 
 </RelativeLayout>

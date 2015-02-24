@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:minHeight="?android:attr/actionBarSize"
         android:background="@android:color/transparent"
-        android:title="Your Inventory" />
+        android:title="Filtered Inventory" />
 
 
     <ScrollView
@@ -19,7 +19,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@+id/toolbar"
-        android:fillViewport="false">
+        android:fillViewport="false"
+        android:visibility="visible">
 
 
         <LinearLayout
@@ -28,32 +29,32 @@
             android:layout_height="fill_parent"
             android:id="@id/list_item">
 
-            </LinearLayout>
+        </LinearLayout>
     </ScrollView>
-
-    <ImageButton
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:id="@+id/fabAdd"
-        android:background="@drawable/button_picker_plus"
-        android:onClick="onClick"
-        android:layout_marginBottom="42dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginEnd="36dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="false" />
 
     <ImageButton
         android:layout_width="26dp"
         android:layout_height="26dp"
         android:id="@+id/button_search"
         android:background="@mipmap/icon_search"
+        android:onClick="onClick"
         android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/fabAdd"
-        android:layout_alignStart="@+id/fabAdd"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="0dp"
-        android:onClick="onClick"/>
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="42dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginTop="15dp" />
+
+    <ImageButton
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:id="@+id/button_close_filter"
+        android:layout_alignTop="@+id/button_search"
+        android:layout_toLeftOf="@+id/button_search"
+        android:layout_toStartOf="@+id/button_search"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="15dp"
+        android:background="@mipmap/cross_icon"
+        android:visibility="visible" />
 
 </RelativeLayout>

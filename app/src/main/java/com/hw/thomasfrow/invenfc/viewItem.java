@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import android.widget.CheckBox;
 import android.content.ContentValues;
 import android.widget.Toast;
 import android.widget.Toolbar;
+import android.widget.ImageButton;
 
 
 
@@ -28,13 +30,19 @@ public class viewItem extends Activity{
     private Item item;
     private boolean loggedInStatus;
     private int ownID;
-
+    private boolean addButtonPressed = false;
+    int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_item2);
-        int id = getIntent().getExtras().getInt("id");
+
+
+        if(getIntent().getExtras() != null){
+            id = getIntent().getExtras().getInt("id");
+
+        }
 
         dataSource = new ItemDataSource();
         dataSource.open();
@@ -55,29 +63,33 @@ public class viewItem extends Activity{
                         public void onClick(DialogInterface dialog, int which) {
 
                             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                            intent.putExtra("redirect",true);
+                            intent.putExtra("redirID",id);
                             startActivity(intent);
-
                         }
                     })
                     .show();
+        }else{
+
+            if(ownID != item.getOwnerID()){
+                new AlertDialog.Builder(this)
+                        .setTitle("Permission Denied")
+                        .setView(R.layout.dialog_not_owner)
+                        .setCancelable(false)
+                        .setPositiveButton("View Inventory", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                Intent intent = new Intent(getApplicationContext(),showInventoryActivity.class);
+                                startActivity(intent);
+
+                            }
+                        })
+                        .show();
+            }
+
         }
 
-        if(ownID != item.getOwnerID()){
-            new AlertDialog.Builder(this)
-                    .setTitle("Permission Denied")
-                    .setView(R.layout.dialog_not_owner)
-                    .setCancelable(false)
-                    .setPositiveButton("View Inventory", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getApplicationContext(),showInventoryActivity.class);
-                            startActivity(intent);
-
-                        }
-                    })
-                    .show();
-        }
 
 
         updateInterface(id);
@@ -110,7 +122,9 @@ public class viewItem extends Activity{
 
         });
 
-        toolbar.setNavigationIcon(R.drawable.ic_action_name);
+
+
+        toolbar.setNavigationIcon(R.mipmap.ic_launcher);
 
         toolbar.setNavigationOnClickListener(new Toolbar.OnClickListener() {
             @Override
@@ -161,9 +175,57 @@ public class viewItem extends Activity{
     public void onClick(final View view) {
 
         switch (view.getId()) {
-            case R.id.fabCamera:
-                Toast.makeText(getApplicationContext(),"Camera activity should be started",Toast.LENGTH_LONG).show();
+            case R.id.fabOpenAddMenu:
+                ImageButton addPhoto = (ImageButton)findViewById(R.id.addPhotoButton);
+                ImageButton addTag = (ImageButton)findViewById(R.id.addTagButton);
+
+                ImageButton openAddMenu = (ImageButton)findViewById(R.id.fabOpenAddMenu);
+
+
+                if(!addButtonPressed){
+
+                    addButtonPressed = !addButtonPressed;
+
+                    openAddMenu.setBackgroundResource(R.drawable.button_cross);
+
+                    addPhoto.setVisibility(View.VISIBLE);
+
+                    addTag.setVisibility(View.VISIBLE);
+
+                }else{
+
+                    openAddMenu.setBackgroundResource(R.drawable.button_picker_plus);
+
+
+                    addButtonPressed = !addButtonPressed;
+
+                    addPhoto.setVisibility(View.GONE);
+
+                    addTag.setVisibility(View.GONE);
+
+                }
+
+
                 break;
+
+            case R.id.addPhotoButton:
+
+                Toast.makeText(getApplicationContext(),"camera activity start",Toast.LENGTH_SHORT);
+                Log.i("buttonPress","Start Photo");
+
+                break;
+
+            case R.id.addTagButton:
+
+                Log.i("buttonPress","Start Tag");
+                Intent intent = new Intent(this, createTagActivity.class);
+                Log.i("NFCStringOutput",Integer.toString(id));
+                intent.putExtra("itemID",id);
+                startActivity(intent);
+
+                break;
+
+
         }
 
     }
@@ -328,8 +390,13 @@ public class viewItem extends Activity{
     }
 
     protected void onResume() {
+
+
+
         dataSource.open();
         super.onResume();
+
+
     }
 
     @Override
@@ -341,19 +408,14 @@ public class viewItem extends Activity{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_view_item, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -361,23 +423,13 @@ public class viewItem extends Activity{
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed(){
 
+        Intent intent = new Intent(this,showInventoryActivity.class);
+        startActivity(intent);
 
-    private class Sample {
-        int titleResId;
-        int descriptionResId;
-        Intent intent;
-
-        private Sample(int titleResId, int descriptionResId, Intent intent) {
-            this.intent = intent;
-            this.titleResId = titleResId;
-            this.descriptionResId = descriptionResId;
-        }
-
-        private Sample(int titleResId, int descriptionResId,
-                       Class<? extends Activity> activityClass) {
-            this(titleResId, descriptionResId,
-                    new Intent(viewItem.this, activityClass));
-        }
     }
+
+
 }

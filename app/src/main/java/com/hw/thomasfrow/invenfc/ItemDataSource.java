@@ -11,6 +11,7 @@ package com.hw.thomasfrow.invenfc;
         import android.database.Cursor;
         import android.database.SQLException;
         import android.database.sqlite.SQLiteDatabase;
+        import android.util.Log;
 
 public class ItemDataSource {
 
@@ -90,11 +91,99 @@ public class ItemDataSource {
         return items;
     }
 
+    public List<Item> filterItems(int ownerID, ContentValues content) {
+        List<Item> items = new ArrayList<Item>();
+
+        String query = ("SELECT * FROM Items WHERE ownerID = " + ownerID);
+        String newQuery = "";
+
+        for (String key : content.keySet()) {
+            String myKey = key;
+            String myValue = content.get(key).toString();
+            newQuery = query.concat(" AND " +  myKey + " = '" + myValue + "'");
+        }
+
+        Cursor cursor = database.rawQuery(newQuery, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Item item = cursorToItem(cursor);
+            items.add(item);
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        String queryLike2 = ("SELECT * FROM Items WHERE ownerID = " + ownerID);
+
+        for (String key : content.keySet()) {
+            String myKey = key;
+            String myValue = content.get(key).toString();
+            queryLike2 = query.concat(" AND " +  myKey + " LIKE '%" + myValue + "%'");
+        }
+
+        cursor = database.rawQuery(queryLike2, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Item item = cursorToItem(cursor);
+
+            if(!isContainedIn(item, items)){
+                items.add(item);
+            }
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        Log.i("FILTER", queryLike2);
+
+        String queryLike1 = ("SELECT * FROM Items WHERE ownerID = " + ownerID);
+
+        for (String key : content.keySet()) {
+            String myKey = key;
+            String myValue = content.get(key).toString();
+            queryLike1 = query.concat(" AND " +  myKey + " LIKE '%" + myValue + "'");
+        }
+
+        cursor = database.rawQuery(queryLike1, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Item item = cursorToItem(cursor);
+
+            if(!isContainedIn(item, items)){
+                items.add(item);
+            }
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        Log.i("FILTER", queryLike1);
+
+
+        
+        
+        return items;
+    }
+    
+    
+    public boolean isContainedIn(Item item, List<Item> items){
+        
+        int max = items.size();
+        int i = 0;
+        while(i < max ){
+            if (items.get(i).getId() == item.getId()){
+                return true;
+            }
+            i++;
+        }
+        return false;
+        
+        
+    }
+
     public List<Item> getItemsByOwner(int ownerID) {
         List<Item> items = new ArrayList<Item>();
 
-        //Cursor cursor = database.query(MySQLiteHelper.DATABASE_TABLE,
-          //      allColumns, null, null, null, null, null);
         Cursor cursor = database.rawQuery("SELECT * FROM Items WHERE ownerID = "+ ownerID, null);
 
         cursor.moveToFirst();

@@ -2,6 +2,7 @@ package com.hw.thomasfrow.invenfc;
 
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -36,8 +38,6 @@ public class showInventoryActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_inventory);
-
-        //ownerID = getIntent().getExtras().getInt("userID");
 
         SharedPreferences prefs = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
         boolean loggedInStatus = prefs.getBoolean("isLoggedIn",false);
@@ -222,10 +222,131 @@ public class showInventoryActivity extends Activity {
 
                 break;
 
+            case R.id.button_search:
+
+                filterItemInterface();
+
+                
+
+                break;
+
         }
     }
+    
+    private void filterItemInterface(){
+        
+            LayoutInflater inflater = this.getLayoutInflater();
+            view2 = inflater.inflate(R.layout.dialog_search_item, null);
+            new AlertDialog.Builder(this)
+                    .setTitle("Edit Item")
+                    .setView(view2)
 
+                    .setPositiveButton("Edit", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
 
+                            final EditText nameEdit = (EditText)view2.findViewById(R.id.enterFilterName);
+                            final EditText roomEdit = (EditText)view2.findViewById(R.id.enterFilterRoom);
+                            final EditText brandEdit = (EditText)view2.findViewById(R.id.enterFilterBrand);
+                            final EditText modelEdit = (EditText)view2.findViewById(R.id.enterFilterModel);
+                            final EditText commentEdit = (EditText)view2.findViewById(R.id.enterFilterComment);
+
+                            Bundle updateItem = new Bundle();
+
+                            CheckBox checkFilterName = (CheckBox)view2.findViewById(R.id.checkFilterName);
+
+                            System.out.print(checkFilterName.isChecked());
+
+                            boolean itemHasUpdated = false;
+
+                            if(checkFilterName.isChecked()){
+                                String editedName = nameEdit.getText().toString();
+                                if(editedName.trim().length() == 0){
+                                    Toast.makeText(getApplicationContext(),"Please insert a value to edit in Name",Toast.LENGTH_SHORT).show();
+                                }else{
+                                    updateItem.putString(MySQLiteHelper.NAME,editedName);
+                                    itemHasUpdated = true;
+
+                                }
+
+                            }
+
+                            CheckBox checkFilterRoom = (CheckBox)view2.findViewById(R.id.checkFilterRoom);
+
+                            if(checkFilterRoom.isChecked()){
+                                String editedRoom = roomEdit.getText().toString();
+                                if(editedRoom.trim().length() == 0){
+                                    Toast.makeText(getApplicationContext(),"Please insert a value to edit in Room",Toast.LENGTH_SHORT).show();
+                                }else{
+                                    updateItem.putString(MySQLiteHelper.ROOM,editedRoom);
+                                    itemHasUpdated = true;
+
+                                }
+                            }
+
+                            CheckBox checkFilterModel = (CheckBox)view2.findViewById(R.id.checkFilterModel);
+
+                            if(checkFilterModel.isChecked()){
+                                String editedModel = modelEdit.getText().toString();
+                                if(editedModel.trim().length() == 0){
+                                    Toast.makeText(getApplicationContext(),"Please insert a value to edit in Model",Toast.LENGTH_SHORT).show();
+                                }else{
+                                    updateItem.putString(MySQLiteHelper.MODEL,editedModel);
+                                    itemHasUpdated = true;
+                                }
+                            }
+
+                            CheckBox checkFilterBrand = (CheckBox)view2.findViewById(R.id.checkFilterBrand);
+
+                            if(checkFilterBrand.isChecked()){
+                                String editedBrand = brandEdit.getText().toString();
+                                if(editedBrand.trim().length() == 0){
+                                    Toast.makeText(getApplicationContext(),"Please insert a value to edit in Brand",Toast.LENGTH_SHORT).show();
+                                }else{
+                                    updateItem.putString(MySQLiteHelper.BRAND,editedBrand);
+                                    itemHasUpdated = true;
+
+                                }
+                            }
+
+                            CheckBox checkFilterComment = (CheckBox)view2.findViewById(R.id.checkFilterComment);
+
+                            if(checkFilterComment.isChecked()){
+                                String editedComment = commentEdit.getText().toString();
+                                if(editedComment.trim().length() == 0){
+                                    Toast.makeText(getApplicationContext(),"Please insert a value to edit in Comment",Toast.LENGTH_SHORT).show();
+                                }else{
+                                    updateItem.putString(MySQLiteHelper.COMMENT,editedComment);
+                                    itemHasUpdated = true;
+
+                                }
+                            }
+
+                            if(itemHasUpdated){
+
+                                Intent intent = new Intent(getApplicationContext(),filteredInventoryActivity.class);
+                                intent.putExtras(updateItem);
+                                startActivity(intent);
+
+                                
+
+                            }else{
+                                Toast.makeText(getApplicationContext(),"Nothing has been updated, Please use checkFilter box to select fields.",Toast.LENGTH_LONG).show();
+                            }
+
+                        }
+                    })
+
+                    .setCancelable(true)
+
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            dialog.dismiss();
+                        }
+                    })
+                    .show();
+    }
 
     private void addItemInterface(){
 
@@ -306,8 +427,6 @@ public class showInventoryActivity extends Activity {
     }
 
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -345,6 +464,6 @@ public class showInventoryActivity extends Activity {
 
     @Override
     public void onBackPressed(){
-
+        moveTaskToBack(true);
     }
 }

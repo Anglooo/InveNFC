@@ -14,12 +14,22 @@ import android.util.*;
 
 public class LoginActivity extends Activity{
 
+    private boolean redirect;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            if (extras.containsKey("redirect")) {
+
+                redirect = getIntent().getExtras().getBoolean("redirect");
+
+            }
+        }
 
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
@@ -78,9 +88,21 @@ public class LoginActivity extends Activity{
                 editor.putInt("userID", userID);
                 editor.commit();
 
-                Intent intent = new Intent(this, showInventoryActivity.class);
-                intent.putExtra("userID", userID);
-                startActivity(intent);
+                if(redirect){
+                    int redirID = getIntent().getExtras().getInt("redirID");
+
+                    Intent intent = new Intent(this, viewItem.class);
+                    intent.putExtra("id", redirID);
+                    startActivity(intent);
+
+                }else{
+                    Intent intent = new Intent(this, showInventoryActivity.class);
+                    intent.putExtra("userID", userID);
+                    startActivity(intent);
+
+                }
+
+
 
             }
 
