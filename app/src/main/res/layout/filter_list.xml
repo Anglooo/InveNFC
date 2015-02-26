@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/primary">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filters"
+        android:id="@+id/textView2"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/primary_text" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:layout_marginLeft="16dp"
+        android:id="@+id/nameFilterLayout">
+
+        <TextView
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:text="Name:"
+            android:id="@+id/textView11"
+            android:layout_marginRight="3dp"
+            android:textStyle="bold"
+            android:textColor="@color/primary_text" />
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="outName"
+            android:id="@+id/outNameFilter"
+            android:textColor="@color/secondary_text" />
+
+        <ImageButton
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/imageButtonNameFilter"
+            android:layout_marginLeft="10dp"
+            android:background="@mipmap/cross_icon" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:layout_marginLeft="16dp"
+        android:id="@+id/roomFilterLayout">
+
+        <TextView
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:text="Room:"
+            android:id="@+id/textView12"
+            android:layout_marginRight="3dp"
+            android:textStyle="bold"
+            android:textColor="@color/primary_text" />
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="outRoom"
+            android:id="@+id/outRoomFilter"
+            android:textColor="@color/secondary_text" />
+
+        <ImageButton
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/imageButtonRoomFilter"
+            android:layout_marginLeft="10dp"
+            android:background="@mipmap/cross_icon" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:layout_marginLeft="16dp"
+        android:id="@+id/brandFilterLayout">
+
+        <TextView
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:text="Brand:"
+            android:layout_marginRight="3dp"
+            android:textStyle="bold"
+            android:textColor="@color/primary_text" />
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="outBrand"
+            android:id="@+id/outBrandFilter"
+            android:textColor="@color/secondary_text" />
+
+        <ImageButton
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/imageButtonBrandFilter"
+            android:layout_marginLeft="10dp"
+            android:background="@mipmap/cross_icon" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:layout_marginLeft="16dp"
+        android:id="@+id/modelFilterLayout">
+
+        <TextView
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:text="Model:"
+            android:layout_marginRight="3dp"
+            android:textStyle="bold"
+            android:textColor="@color/primary_text" />
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="outModel"
+            android:id="@+id/outModelFilter"
+            android:textColor="@color/secondary_text" />
+
+        <ImageButton
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/imageButtonModelFilter"
+            android:layout_marginLeft="10dp"
+            android:background="@mipmap/cross_icon" />
+    </LinearLayout>
+</LinearLayout>

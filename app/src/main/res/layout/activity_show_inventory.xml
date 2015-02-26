@@ -10,8 +10,10 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:minHeight="?android:attr/actionBarSize"
-        android:background="@android:color/transparent"
-        android:title="Your Inventory" />
+        android:background="@color/primary"
+        android:title="Your Inventory"
+        android:theme="@style/ActionBarOverlay"
+        android:popupTheme="@android:style/Theme.Material.Light" />
 
 
     <ScrollView
@@ -19,7 +21,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@+id/toolbar"
-        android:fillViewport="false">
+        android:fillViewport="false"
+        android:background="@color/background">
 
 
         <LinearLayout

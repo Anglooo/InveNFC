@@ -28,7 +28,7 @@
             android:name=".invenfc"
             android:exported="true"
             android:label="@string/title_activity_main"
-            android:theme="@android:style/Theme.Material.Light.NoActionBar" >
+            android:theme="@style/AppTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,7 +46,7 @@
             android:name=".viewItem"
             android:exported="true"
             android:label="@string/title_activity_view_item"
-            android:theme="@android:style/Theme.Material.Light.NoActionBar" >
+            android:theme="@style/AppTheme" >
         </activity>
         <activity
             android:name=".TestDatabaseActivity"
@@ -57,7 +57,7 @@
             android:name=".showInventoryActivity"
             android:exported="true"
             android:label="@string/title_activity_show_inventory"
-            android:theme="@android:style/Theme.Material.Light.NoActionBar" >
+            android:theme="@style/AppTheme" >
         </activity>
         <activity
             android:name=".createTagActivity"
@@ -65,7 +65,8 @@
         </activity>
         <activity
             android:name=".filteredInventoryActivity"
-            android:label="@string/title_activity_filtered_inventory" >
+            android:label="@string/title_activity_filtered_inventory"
+            android:theme="@style/AppTheme">
         </activity>
     </application>
 

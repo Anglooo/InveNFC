@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     tools:context="com.hw.thomasfrow.invenfc.showInventoryActivity"
-    android:background="#ffc9ccce"
+    android:background="@color/background"
     android:orientation="vertical">
 
     <Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
@@ -10,8 +10,11 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:minHeight="?android:attr/actionBarSize"
-        android:background="@android:color/transparent"
-        android:title="Create Tag" />
+        android:background="@color/primary"
+        android:title="Create Tag"
+        android:popupTheme="@android:style/Theme.Material.Light"
+        android:theme="@style/ActionBarOverlay"
+        android:transitionGroup="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,7 +26,8 @@
         android:textSize="20dp"
         android:textStyle="bold"
         android:layout_margin="10dp"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textColor="@color/primary_text" />
 
     <LinearLayout
         android:orientation="horizontal"

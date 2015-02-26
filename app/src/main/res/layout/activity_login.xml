@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     tools:context="com.hw.thomasfrow.invenfc.viewItem"
     android:clickable="false"
-    android:background="#ffc9ccce"
+    android:background="@color/background"
     android:focusableInTouchMode="false"
     android:id="@+id/fullScreenLayout">
 
@@ -12,7 +12,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:minHeight="?android:attr/actionBarSize"
-        android:background="@android:color/transparent"/>
+        android:background="@color/primary"
+        android:theme="@style/ActionBarOverlay"
+        android:popupTheme="@android:style/Theme.Material.Light" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -35,14 +37,16 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:textSize="20dp"
-            android:layout_marginRight="5dp" />
+            android:layout_marginRight="5dp"
+            android:textColor="@color/primary_text" />
 
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editTextUsername"
             android:singleLine="true"
-            android:imeOptions="actionNext"/>
+            android:imeOptions="actionNext"
+            android:textColor="@color/secondary_text" />
 
     </LinearLayout>
 
@@ -66,7 +70,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:textSize="20dp"
-            android:layout_marginRight="5dp" />
+            android:layout_marginRight="5dp"
+            android:textColor="@color/primary_text" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -76,7 +81,8 @@
             android:id="@+id/editTextPassword"
             android:layout_weight="1"
             android:singleLine="true"
-            android:imeOptions="actionDone"/>
+            android:imeOptions="actionDone"
+            android:textColor="@color/secondary_text" />
 
     </LinearLayout>
 
@@ -85,12 +91,9 @@
         android:layout_height="wrap_content"
         android:text="Login"
         android:id="@+id/loginButton"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="50dp"
+        android:onClick="onClick"
         android:layout_below="@+id/linearLayout2"
-        android:layout_alignLeft="@+id/linearLayout2"
-        android:layout_alignStart="@+id/linearLayout2"
-        android:layout_marginLeft="33dp"
-        android:layout_marginStart="33dp"
-        android:onClick="onClick"/>
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

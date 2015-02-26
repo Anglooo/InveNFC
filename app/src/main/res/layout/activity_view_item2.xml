@@ -3,20 +3,9 @@
     android:layout_height="match_parent"
     tools:context="com.hw.thomasfrow.invenfc.viewItem"
     android:clickable="false"
-    android:background="#ffc9ccce"
+    android:background="@color/background"
     android:focusableInTouchMode="false"
     android:id="@+id/fullScreenLayout">
-
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="300dp"
-        android:id="@+id/itemImageView"
-        android:background="@android:color/holo_green_dark"
-        android:clickable="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -24,7 +13,8 @@
         android:id="@+id/scrollView2"
         android:layout_below="@+id/fabOpenAddMenu"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:background="@color/background">
 
         <LinearLayout
             android:orientation="vertical"
@@ -41,33 +31,31 @@
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_marginBottom="5dp">
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="ITEM ID"
                     android:id="@+id/itemIdView"
                     android:layout_marginBottom="2dp"
-                    android:textColor="#ffffffff"
                     android:textStyle="bold"
                     android:typeface="normal"
                     android:layout_gravity="center_horizontal"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:textColor="@color/primary_text" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="ID Placeholder"
                     android:id="@+id/outIDView"
                     android:layout_marginLeft="5dp"
-                    android:textColor="#ffffffff"
-                    android:textStyle="bold"
                     android:typeface="normal"
                     android:layout_gravity="center_horizontal"
-                    android:textSize="15dp" />
+                    android:textSize="14dp"
+                    android:textColor="@color/secondary_text" />
 
             </LinearLayout>
 
@@ -85,23 +73,21 @@
                     android:id="@+id/itemRoomView"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="2dp"
-                    android:textColor="#ffffffff"
                     android:textStyle="bold"
                     android:typeface="normal"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:textColor="@color/primary_text" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Room Placeholder"
                     android:id="@+id/outRoomView"
                     android:layout_marginLeft="5dp"
-                    android:textColor="#ffffffff"
-                    android:textStyle="bold"
                     android:typeface="normal"
-                    android:textSize="15dp"
-                    android:layout_gravity="center_horizontal" />
+                    android:textSize="14dp"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/secondary_text" />
             </LinearLayout>
 
             <LinearLayout
@@ -118,10 +104,10 @@
                     android:id="@+id/itemBrandView"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="2dp"
-                    android:textColor="#ffffffff"
                     android:textStyle="bold"
                     android:typeface="normal"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:textColor="@color/primary_text" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -130,11 +116,10 @@
                     android:text="Brand Placeholder"
                     android:id="@+id/outBrandView"
                     android:layout_marginLeft="5dp"
-                    android:textColor="#ffffffff"
-                    android:textStyle="bold"
                     android:typeface="normal"
-                    android:textSize="15dp"
-                    android:layout_gravity="center_horizontal" />
+                    android:textSize="14dp"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/secondary_text" />
             </LinearLayout>
 
             <LinearLayout
@@ -150,11 +135,11 @@
                     android:text="MODEL"
                     android:id="@+id/itemModelView"
                     android:layout_marginBottom="2dp"
-                    android:textColor="#ffffffff"
                     android:textStyle="bold"
                     android:typeface="normal"
                     android:layout_gravity="center_horizontal"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:textColor="@color/primary_text" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -163,11 +148,10 @@
                     android:text="Model Placeholder"
                     android:id="@+id/outModelView"
                     android:layout_marginLeft="5dp"
-                    android:textColor="#ffffffff"
-                    android:textStyle="bold"
                     android:typeface="normal"
-                    android:textSize="15dp"
-                    android:layout_gravity="center_horizontal" />
+                    android:textSize="14dp"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/secondary_text" />
 
             </LinearLayout>
 
@@ -184,11 +168,11 @@
                     android:text="COMMENT"
                     android:id="@+id/itemCommentView"
                     android:layout_marginBottom="2dp"
-                    android:textColor="#ffffffff"
                     android:textStyle="bold"
                     android:typeface="normal"
                     android:layout_gravity="center_horizontal"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:textColor="@color/primary_text" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -197,11 +181,10 @@
                     android:text="Model Placeholder"
                     android:id="@+id/outCommentView"
                     android:layout_marginLeft="5dp"
-                    android:textColor="#ffffffff"
-                    android:textStyle="bold"
                     android:typeface="normal"
-                    android:textSize="15dp"
-                    android:layout_gravity="center_horizontal" />
+                    android:textSize="14dp"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/secondary_text" />
             </LinearLayout>
 
             <LinearLayout
@@ -218,11 +201,11 @@
                     android:text="HAS TAG?"
                     android:id="@+id/hasTagView"
                     android:layout_marginBottom="2dp"
-                    android:textColor="#ffffffff"
                     android:textStyle="bold"
                     android:typeface="normal"
                     android:layout_gravity="center_horizontal"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:textColor="@color/primary_text" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -231,11 +214,10 @@
                     android:text="Tag Placeholder"
                     android:id="@+id/outTagView"
                     android:layout_marginLeft="5dp"
-                    android:textColor="#ffffffff"
-                    android:textStyle="bold"
                     android:typeface="normal"
-                    android:textSize="15dp"
-                    android:layout_gravity="center_horizontal" />
+                    android:textSize="14dp"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/secondary_text" />
             </LinearLayout>
 
             <LinearLayout
@@ -250,6 +232,41 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="275dp"
+        android:id="@+id/itemImageView"
+        android:clickable="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@color/primary" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EXAMPLE NAME"
+        android:id="@+id/nameOutView"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        android:layout_above="@+id/scrollView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="45dp"
+        android:layout_marginBottom="30dp"
+        android:textColor="@color/text_icons" />
+
+    <SurfaceView
+        android:layout_width="fill_parent"
+        android:layout_height="275dp"
+        android:id="@+id/surfaceView"
+        android:layout_below="@+id/addPhotoButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:visibility="invisible" />
 
     <ImageButton
         android:id="@+id/fabOpenAddMenu"
@@ -270,7 +287,8 @@
         android:layout_height="wrap_content"
         android:minHeight="?android:attr/actionBarSize"
         android:background="@android:color/transparent"
-        android:title="&quot;hello&quot;" />
+        android:theme="@style/ActionBarOverlay"
+        android:popupTheme="@android:style/Theme.Material.Light"/>
 
     <ImageButton
         android:id="@+id/addPhotoButton"
@@ -280,9 +298,9 @@
         android:gravity="center_vertical|center_horizontal"
         android:background="@drawable/button_camera"
         android:onClick="onClick"
-        android:layout_marginTop="330dp"
         android:layout_marginRight="25dp"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:layout_marginTop="315dp" />
 
     <ImageButton
         android:id="@+id/addTagButton"
@@ -292,8 +310,8 @@
         android:gravity="center_vertical|center_horizontal"
         android:background="@drawable/button_tag"
         android:onClick="onClick"
-        android:layout_marginTop="385dp"
         android:layout_marginRight="25dp"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:layout_marginTop="370dp" />
 
 </RelativeLayout>

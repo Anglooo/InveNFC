@@ -1,7 +1,7 @@
 package com.hw.thomasfrow.invenfc;
 
 /**
- * Created by thomas on 10/02/15.
+ * Created by Thomas on 10/02/15.
  */
         import java.util.ArrayList;
         import java.util.List;

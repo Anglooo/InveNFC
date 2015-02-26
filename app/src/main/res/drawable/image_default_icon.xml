@@ -1,0 +1,14 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <layer-list>
+            <item android:bottom="0dp">
+                <shape android:shape="oval">
+                    <solid android:color="#38555650"/>
+                </shape>
+            </item>
+            <item android:drawable="@mipmap/icon_default_foreground"/>
+
+        </layer-list>
+    </item>
+
+</selector>

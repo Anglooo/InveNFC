@@ -7,7 +7,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="There is nothing in your inventory. Press the + to add an item."
-        android:id="@+id/textView2"
+        android:id="@+id/textEmpty"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="false"

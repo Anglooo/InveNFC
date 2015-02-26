@@ -107,11 +107,6 @@ public class showInventoryActivity extends Activity {
                 outName.setText(name);
 
 
-                TextView outOwner = (TextView) itemView.findViewById(R.id.ownerView);
-                String ownerID = Integer.toString(it.getOwnerID());
-                outOwner.setText(ownerID);
-
-
                 TextView outID = (TextView) itemView.findViewById(R.id.idView);
                 String id = Integer.toString(it.getId());
                 outID.setText(id);
@@ -124,23 +119,6 @@ public class showInventoryActivity extends Activity {
                 }
                 outRoom.setText(room);
 
-                TextView outBrand = (TextView) itemView.findViewById(R.id.brandView);
-                String brand = it.getBrand();
-                System.out.println("the numer is: ");
-                System.out.print(brand.length());
-                if(brand.length() > 10 ){
-                    brand = it.getBrand().substring(0,7);
-                    brand = brand.concat("...");
-                }
-                outBrand.setText(brand);
-
-                TextView outModel = (TextView) itemView.findViewById(R.id.modelView);
-                String model = it.getModel();
-                if(model.length() > 10 ){
-                    model = it.getModel().substring(0,7);
-                    model = model.concat("...");
-                }
-                outModel.setText(model);
 
                 final int id1 = it.getId();
 
@@ -238,10 +216,10 @@ public class showInventoryActivity extends Activity {
             LayoutInflater inflater = this.getLayoutInflater();
             view2 = inflater.inflate(R.layout.dialog_search_item, null);
             new AlertDialog.Builder(this)
-                    .setTitle("Edit Item")
+                    .setTitle("Filter Item")
                     .setView(view2)
 
-                    .setPositiveButton("Edit", new DialogInterface.OnClickListener() {
+                    .setPositiveButton("Filter items", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int id) {
 
@@ -249,7 +227,6 @@ public class showInventoryActivity extends Activity {
                             final EditText roomEdit = (EditText)view2.findViewById(R.id.enterFilterRoom);
                             final EditText brandEdit = (EditText)view2.findViewById(R.id.enterFilterBrand);
                             final EditText modelEdit = (EditText)view2.findViewById(R.id.enterFilterModel);
-                            final EditText commentEdit = (EditText)view2.findViewById(R.id.enterFilterComment);
 
                             Bundle updateItem = new Bundle();
 
@@ -262,7 +239,7 @@ public class showInventoryActivity extends Activity {
                             if(checkFilterName.isChecked()){
                                 String editedName = nameEdit.getText().toString();
                                 if(editedName.trim().length() == 0){
-                                    Toast.makeText(getApplicationContext(),"Please insert a value to edit in Name",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(),"Please insert a value to filter.",Toast.LENGTH_SHORT).show();
                                 }else{
                                     updateItem.putString(MySQLiteHelper.NAME,editedName);
                                     itemHasUpdated = true;
@@ -276,7 +253,7 @@ public class showInventoryActivity extends Activity {
                             if(checkFilterRoom.isChecked()){
                                 String editedRoom = roomEdit.getText().toString();
                                 if(editedRoom.trim().length() == 0){
-                                    Toast.makeText(getApplicationContext(),"Please insert a value to edit in Room",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(),"Please insert a value to filter.",Toast.LENGTH_SHORT).show();
                                 }else{
                                     updateItem.putString(MySQLiteHelper.ROOM,editedRoom);
                                     itemHasUpdated = true;
@@ -289,7 +266,7 @@ public class showInventoryActivity extends Activity {
                             if(checkFilterModel.isChecked()){
                                 String editedModel = modelEdit.getText().toString();
                                 if(editedModel.trim().length() == 0){
-                                    Toast.makeText(getApplicationContext(),"Please insert a value to edit in Model",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(),"Please insert a value to filter.",Toast.LENGTH_SHORT).show();
                                 }else{
                                     updateItem.putString(MySQLiteHelper.MODEL,editedModel);
                                     itemHasUpdated = true;
@@ -301,22 +278,9 @@ public class showInventoryActivity extends Activity {
                             if(checkFilterBrand.isChecked()){
                                 String editedBrand = brandEdit.getText().toString();
                                 if(editedBrand.trim().length() == 0){
-                                    Toast.makeText(getApplicationContext(),"Please insert a value to edit in Brand",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(),"Please insert a value to filter.",Toast.LENGTH_SHORT).show();
                                 }else{
                                     updateItem.putString(MySQLiteHelper.BRAND,editedBrand);
-                                    itemHasUpdated = true;
-
-                                }
-                            }
-
-                            CheckBox checkFilterComment = (CheckBox)view2.findViewById(R.id.checkFilterComment);
-
-                            if(checkFilterComment.isChecked()){
-                                String editedComment = commentEdit.getText().toString();
-                                if(editedComment.trim().length() == 0){
-                                    Toast.makeText(getApplicationContext(),"Please insert a value to edit in Comment",Toast.LENGTH_SHORT).show();
-                                }else{
-                                    updateItem.putString(MySQLiteHelper.COMMENT,editedComment);
                                     itemHasUpdated = true;
 
                                 }
@@ -331,7 +295,7 @@ public class showInventoryActivity extends Activity {
                                 
 
                             }else{
-                                Toast.makeText(getApplicationContext(),"Nothing has been updated, Please use checkFilter box to select fields.",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"Please select fields to filter.",Toast.LENGTH_LONG).show();
                             }
 
                         }

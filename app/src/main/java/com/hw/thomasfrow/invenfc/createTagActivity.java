@@ -9,6 +9,7 @@ import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.app.PendingIntent;
 import android.content.IntentFilter;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -18,6 +19,7 @@ import android.nfc.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import java.lang.reflect.Array;
 import java.nio.charset.Charset;
@@ -36,6 +38,17 @@ public class createTagActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_tag);
+
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.mipmap.ic_launcher);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
+
         itemID = getIntent().getExtras().getInt("itemID");
 
         adapter = NfcAdapter.getDefaultAdapter(this);
@@ -129,6 +142,12 @@ public class createTagActivity extends ActionBarActivity {
         LinearLayout layout = (LinearLayout)findViewById(R.id.outLayout);
         layout.setBackgroundResource(R.color.mat_green);
         outView.setText("Tag has been successfuly created");
+    }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        this.finish();
     }
 
 

@@ -141,20 +141,19 @@ public class viewItem extends Activity{
 
     private void updateInterface(int id){
 
-        System.out.println("updateInterface called.");
 
         item = dataSource.getItemByID(id);
 
         TextView editView;
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-        toolbar.setTitle("ITEM: " + item.getName());
 
-        ImageView imageView = (ImageView)findViewById(R.id.itemImageView);
+        //ImageView imageView = (ImageView)findViewById(R.id.itemImageView);
+
+        editView = (TextView)this.findViewById(R.id.nameOutView);
+        editView.setText(item.getName());
 
 
         editView = (TextView)this.findViewById(R.id.outIDView);
-        System.out.print(R.id.outIDView);
         editView.setText(Integer.toString(item.getId()));
 
 
@@ -176,6 +175,10 @@ public class viewItem extends Activity{
 
         switch (view.getId()) {
             case R.id.fabOpenAddMenu:
+                TextView test = (TextView)findViewById(R.id.nameOutView);
+
+
+                Log.i("BUG", Integer.toString(test.getVisibility()));
                 ImageButton addPhoto = (ImageButton)findViewById(R.id.addPhotoButton);
                 ImageButton addTag = (ImageButton)findViewById(R.id.addTagButton);
 
@@ -183,7 +186,8 @@ public class viewItem extends Activity{
 
 
                 if(!addButtonPressed){
-
+                    test.setVisibility(View.VISIBLE);
+                    Log.i("BUG", Integer.toString(test.getVisibility()));
                     addButtonPressed = !addButtonPressed;
 
                     openAddMenu.setBackgroundResource(R.drawable.button_cross);
@@ -191,6 +195,8 @@ public class viewItem extends Activity{
                     addPhoto.setVisibility(View.VISIBLE);
 
                     addTag.setVisibility(View.VISIBLE);
+
+
 
                 }else{
 
@@ -433,3 +439,4 @@ public class viewItem extends Activity{
 
 
 }
+

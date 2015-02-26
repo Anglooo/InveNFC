@@ -84,6 +84,113 @@ public class filteredInventoryActivity extends ActionBarActivity {
 
         if(items.size() != 0){
 
+            View headerView = inflater.inflate(R.layout.filter_list,null,false);
+
+            final Intent intent = new Intent(this, showInventoryActivity.class);
+
+
+            if(values.containsKey(MySQLiteHelper.NAME)){
+
+                TextView nameView = (TextView)headerView.findViewById(R.id.outNameFilter);
+                nameView.setText(values.getAsString(MySQLiteHelper.NAME));
+
+                ImageButton nameButton = (ImageButton)headerView.findViewById(R.id.imageButtonNameFilter);
+                nameButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        values.remove(MySQLiteHelper.NAME);
+                        if(values.size() != 0){
+                            drawFilterInterface();
+                        }else{
+                            startActivity(intent);
+                        }
+                    }
+                });
+
+            }else{
+
+                LinearLayout nameLay = (LinearLayout)headerView.findViewById(R.id.nameFilterLayout);
+                nameLay.setVisibility(View.GONE);
+
+            }
+            
+            if(values.containsKey(MySQLiteHelper.ROOM)){
+
+                TextView nameView = (TextView)headerView.findViewById(R.id.outRoomFilter);
+                nameView.setText(values.getAsString(MySQLiteHelper.ROOM));
+
+                ImageButton nameButton = (ImageButton)headerView.findViewById(R.id.imageButtonRoomFilter);
+                nameButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        values.remove(MySQLiteHelper.ROOM);
+                        if(values.size() != 0){
+                            drawFilterInterface();
+                        }else{
+                            startActivity(intent);
+                        }
+                    }
+                });
+
+            }else{
+
+                LinearLayout lay = (LinearLayout)headerView.findViewById(R.id.roomFilterLayout);
+                lay.setVisibility(View.GONE);
+
+            }
+
+            if(values.containsKey(MySQLiteHelper.MODEL)){
+
+                TextView nameView = (TextView)headerView.findViewById(R.id.outModelFilter);
+                nameView.setText(values.getAsString(MySQLiteHelper.MODEL));
+
+                ImageButton nameButton = (ImageButton)headerView.findViewById(R.id.imageButtonModelFilter);
+                nameButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        values.remove(MySQLiteHelper.MODEL);
+                        if(values.size() != 0){
+                            drawFilterInterface();
+                        }else{
+                            startActivity(intent);
+                        }
+                    }
+                });
+
+            }else{
+
+                LinearLayout lay = (LinearLayout)headerView.findViewById(R.id.modelFilterLayout);
+                lay.setVisibility(View.GONE);
+
+            }
+
+            if(values.containsKey(MySQLiteHelper.BRAND)){
+
+                TextView nameView = (TextView)headerView.findViewById(R.id.outBrandFilter);
+                nameView.setText(values.getAsString(MySQLiteHelper.BRAND));
+
+                ImageButton nameButton = (ImageButton)headerView.findViewById(R.id.imageButtonBrandFilter);
+                nameButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        values.remove(MySQLiteHelper.BRAND);
+                        if(values.size() != 0){
+                            drawFilterInterface();
+                        }else{
+                            startActivity(intent);
+                        }
+                    }
+                });
+
+            }else{
+
+                LinearLayout lay = (LinearLayout)headerView.findViewById(R.id.brandFilterLayout);
+                lay.setVisibility(View.GONE);
+
+            }
+
+            inside.addView(headerView);
+
             for(Item it : items){
 
                 View itemView = inflater.inflate(R.layout.item_in_inventory,null, false);
@@ -98,10 +205,6 @@ public class filteredInventoryActivity extends ActionBarActivity {
                 outName.setText(name);
 
 
-                TextView outOwner = (TextView) itemView.findViewById(R.id.ownerView);
-                String ownerID = Integer.toString(it.getOwnerID());
-                outOwner.setText(ownerID);
-
 
                 TextView outID = (TextView) itemView.findViewById(R.id.idView);
                 String id = Integer.toString(it.getId());
@@ -114,23 +217,6 @@ public class filteredInventoryActivity extends ActionBarActivity {
                     room = room.concat("...");
                 }
                 outRoom.setText(room);
-
-                TextView outBrand = (TextView) itemView.findViewById(R.id.brandView);
-                String brand = it.getBrand();
-                System.out.print(brand.length());
-                if(brand.length() > 10 ){
-                    brand = it.getBrand().substring(0,7);
-                    brand = brand.concat("...");
-                }
-                outBrand.setText(brand);
-
-                TextView outModel = (TextView) itemView.findViewById(R.id.modelView);
-                String model = it.getModel();
-                if(model.length() > 10 ){
-                    model = it.getModel().substring(0,7);
-                    model = model.concat("...");
-                }
-                outModel.setText(model);
 
                 final int id1 = it.getId();
 
@@ -162,6 +248,8 @@ public class filteredInventoryActivity extends ActionBarActivity {
         }else{
 
             View itemView = inflater.inflate(R.layout.inventory_empty,null, false);
+            TextView outText =(TextView)itemView.findViewById(R.id.textEmpty);
+            outText.setText("There are no items matching your filter. Please try again.");
             inside.addView(itemView);
 
         }
@@ -205,10 +293,10 @@ public class filteredInventoryActivity extends ActionBarActivity {
         LayoutInflater inflater = this.getLayoutInflater();
         view2 = inflater.inflate(R.layout.dialog_search_item, null);
         new AlertDialog.Builder(this)
-                .setTitle("Edit Item")
+                .setTitle("Filter Items")
                 .setView(view2)
 
-                .setPositiveButton("Edit", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Filter", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
 
@@ -216,7 +304,6 @@ public class filteredInventoryActivity extends ActionBarActivity {
                         final EditText roomEdit = (EditText)view2.findViewById(R.id.enterFilterRoom);
                         final EditText brandEdit = (EditText)view2.findViewById(R.id.enterFilterBrand);
                         final EditText modelEdit = (EditText)view2.findViewById(R.id.enterFilterModel);
-                        final EditText commentEdit = (EditText)view2.findViewById(R.id.enterFilterComment);
 
                         ContentValues updateItem = new ContentValues();
 
@@ -229,7 +316,7 @@ public class filteredInventoryActivity extends ActionBarActivity {
                         if(checkFilterName.isChecked()){
                             String editedName = nameEdit.getText().toString();
                             if(editedName.trim().length() == 0){
-                                Toast.makeText(getApplicationContext(),"Please insert a value to edit in Name",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),"Please insert a value to filter in Name",Toast.LENGTH_SHORT).show();
                             }else{
                                 updateItem.put(MySQLiteHelper.NAME,editedName);
                                 itemHasUpdated = true;
@@ -243,7 +330,7 @@ public class filteredInventoryActivity extends ActionBarActivity {
                         if(checkFilterRoom.isChecked()){
                             String editedRoom = roomEdit.getText().toString();
                             if(editedRoom.trim().length() == 0){
-                                Toast.makeText(getApplicationContext(),"Please insert a value to edit in Room",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),"Please insert a value to filter in Room",Toast.LENGTH_SHORT).show();
                             }else{
                                 updateItem.put(MySQLiteHelper.ROOM,editedRoom);
                                 itemHasUpdated = true;
@@ -256,7 +343,7 @@ public class filteredInventoryActivity extends ActionBarActivity {
                         if(checkFilterModel.isChecked()){
                             String editedModel = modelEdit.getText().toString();
                             if(editedModel.trim().length() == 0){
-                                Toast.makeText(getApplicationContext(),"Please insert a value to edit in Model",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),"Please insert a value to filter in Model",Toast.LENGTH_SHORT).show();
                             }else{
                                 updateItem.put(MySQLiteHelper.MODEL,editedModel);
                                 itemHasUpdated = true;
@@ -268,7 +355,7 @@ public class filteredInventoryActivity extends ActionBarActivity {
                         if(checkFilterBrand.isChecked()){
                             String editedBrand = brandEdit.getText().toString();
                             if(editedBrand.trim().length() == 0){
-                                Toast.makeText(getApplicationContext(),"Please insert a value to edit in Brand",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),"Please insert a value to filter in Brand",Toast.LENGTH_SHORT).show();
                             }else{
                                 updateItem.put(MySQLiteHelper.BRAND,editedBrand);
                                 itemHasUpdated = true;
@@ -276,29 +363,16 @@ public class filteredInventoryActivity extends ActionBarActivity {
                             }
                         }
 
-                        CheckBox checkFilterComment = (CheckBox)view2.findViewById(R.id.checkFilterComment);
-
-                        if(checkFilterComment.isChecked()){
-                            String editedComment = commentEdit.getText().toString();
-                            if(editedComment.trim().length() == 0){
-                                Toast.makeText(getApplicationContext(),"Please insert a value to edit in Comment",Toast.LENGTH_SHORT).show();
-                            }else{
-                                updateItem.put(MySQLiteHelper.COMMENT,editedComment);
-                                itemHasUpdated = true;
-
-                            }
-                        }
 
                         if(itemHasUpdated){
 
                             values.clear();
                             values = updateItem;
                             drawFilterInterface();
-                           
 
 
                         }else{
-                            Toast.makeText(getApplicationContext(),"Nothing has been updated, Please use checkFilter box to select fields.",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(),"No filters selected. Please select fields to filter by.",Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -328,7 +402,6 @@ public class filteredInventoryActivity extends ActionBarActivity {
 
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -344,12 +417,10 @@ public class filteredInventoryActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     protected void onPause() {
         dataSource.close();
         super.onPause();
     }
-
 
 }
