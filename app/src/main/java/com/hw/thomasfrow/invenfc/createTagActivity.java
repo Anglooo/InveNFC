@@ -1,5 +1,6 @@
 package com.hw.thomasfrow.invenfc;
 
+import android.content.ContentValues;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,10 +30,11 @@ import android.content.IntentFilter.*;
 
 public class createTagActivity extends ActionBarActivity {
 
+    private ItemDataSource dataSource;
     NfcAdapter adapter;
     PendingIntent pendingIntent;
+    Item item;
     int itemID;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,12 @@ public class createTagActivity extends ActionBarActivity {
 
         itemID = getIntent().getExtras().getInt("itemID");
 
+        dataSource = new ItemDataSource();
+        dataSource.open();
+
+        item = dataSource.getItemByID(itemID);
+
+
         adapter = NfcAdapter.getDefaultAdapter(this);
 
         Log.i("NFCAdapter","The adapter is below");
@@ -61,6 +69,8 @@ public class createTagActivity extends ActionBarActivity {
                 this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
 
 
+
+
         IntentFilter ndef = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED);
         try {
             ndef.addDataType("*/*");
@@ -68,21 +78,8 @@ public class createTagActivity extends ActionBarActivity {
         catch (MalformedMimeTypeException e) {
             throw new RuntimeException("fail", e);
         }
-        /*intentFiltersArray = new IntentFilter[] {ndef, };
-
-        techListsArray = new String[][] { new String[] {
-                NfcV.class.getName(),
-                NfcF.class.getName(),
-                NfcA.class.getName(),
-                NfcB.class.getName(),
-                MifareUltralight.class.getName(),
-                Ndef.class.getName()
-        } };*/
 
     }
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -118,9 +115,8 @@ public class createTagActivity extends ActionBarActivity {
         }
     }
 
-
-
     private void write(Tag tag, int id) throws IOException, FormatException {
+
 
         String stringID = Integer.toString(id);
         byte[] byteID = stringID.getBytes();
@@ -142,6 +138,9 @@ public class createTagActivity extends ActionBarActivity {
         LinearLayout layout = (LinearLayout)findViewById(R.id.outLayout);
         layout.setBackgroundResource(R.color.mat_green);
         outView.setText("Tag has been successfuly created");
+        ContentValues updateTag = new ContentValues();
+        updateTag.put(MySQLiteHelper.TAG,1);
+        dataSource.updateItem(id,updateTag);
     }
 
     @Override
@@ -149,7 +148,5 @@ public class createTagActivity extends ActionBarActivity {
         super.onBackPressed();
         this.finish();
     }
-
-
 
 }

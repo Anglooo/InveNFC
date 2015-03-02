@@ -20,7 +20,16 @@ import android.content.ContentValues;
 import android.widget.Toast;
 import android.widget.Toolbar;
 import android.widget.ImageButton;
+import android.os.Environment;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
+import java.io.File;
 
 
 public class viewItem extends Activity{
@@ -28,15 +37,20 @@ public class viewItem extends Activity{
     private ItemDataSource dataSource;
     private View view2;
     private Item item;
-    private boolean loggedInStatus;
     private int ownID;
     private boolean addButtonPressed = false;
     int id;
+    static final int REQUEST_TAKE_PHOTO = 1;
+    ImageView imageView;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_item2);
+
 
 
         if(getIntent().getExtras() != null){
@@ -136,6 +150,8 @@ public class viewItem extends Activity{
             }
         });
 
+        drawImageInterface();
+
 
     }
 
@@ -168,6 +184,10 @@ public class viewItem extends Activity{
 
         editView = (TextView)findViewById(R.id.outCommentView);
         editView.setText(item.getComment());
+
+        editView = (TextView)findViewById(R.id.outTagView);
+        Log.i("TAG-View",Boolean.toString(item.getTag()));
+        editView.setText(Boolean.toString(item.getTag()));
 
     }
 
@@ -216,8 +236,8 @@ public class viewItem extends Activity{
 
             case R.id.addPhotoButton:
 
-                Toast.makeText(getApplicationContext(),"camera activity start",Toast.LENGTH_SHORT);
-                Log.i("buttonPress","Start Photo");
+
+                dispatchTakePictureIntent();
 
                 break;
 
@@ -395,13 +415,102 @@ public class viewItem extends Activity{
 
     }
 
+
+    private void dispatchTakePictureIntent() {
+
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, REQUEST_TAKE_PHOTO);
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        dataSource.close();
+
+        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
+
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+
+            saveImage(photo);
+
+            drawImageInterface();
+
+            //imageView.setImageBitmap(photo);
+        }
+    }
+
+    private void saveImage(Bitmap image){
+
+        File pictureFile = getOutputMediaFile();
+        if (pictureFile == null) {
+
+            return;
+        }
+        try {
+            FileOutputStream fos = new FileOutputStream(pictureFile);
+            image.compress(Bitmap.CompressFormat.PNG, 90, fos);
+            fos.close();
+        } catch (FileNotFoundException e) {
+            //Log.d(TAG, "File not found: " + e.getMessage());
+        } catch (IOException e) {
+            //Log.d(TAG, "Error accessing file: " + e.getMessage());
+        }
+
+    }
+
+    private  File getOutputMediaFile(){
+        // To be safe, you should check that the SDCard is mounted
+        // using Environment.getExternalStorageState() before doing this.
+        File mediaStorageDir = new File(Environment.getExternalStorageDirectory()
+                + "/Android/data/"
+                + getApplicationContext().getPackageName()
+                + "/Photos");
+
+        // This location works best if you want the created images to be shared
+        // between applications and persist after your app has been uninstalled.
+
+        // Create the storage directory if it does not exist
+        if (! mediaStorageDir.exists()){
+            if (! mediaStorageDir.mkdirs()){
+                return null;
+            }
+        }
+        // Create a media file name
+        String timeStamp = new SimpleDateFormat("ddMMyyyy_HHmm").format(new Date());
+        File mediaFile;
+        String mImageName="PHOTO_"+ item.getId() +".jpg";
+        mediaFile = new File(mediaStorageDir.getPath() + File.separator + mImageName);
+        return mediaFile;
+    }
+
+    private void drawImageInterface(){
+
+        String fileName = "PHOTO_" +item.getId() + ".jpg";
+        //File file = getBaseContext().getFileStreamPath(fileName);
+        imageView = (ImageView)findViewById(R.id.itemImageView);
+
+        File file = new File(Environment.getExternalStorageDirectory()
+                + "/Android/data/"
+                + getApplicationContext().getPackageName()
+                + "/Photos/" +fileName);
+
+        Log.i("PHOTO", file.toString());
+        if(file.exists()){
+
+            Log.i("PHOTO","FILE EXISTS");
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+            Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(), options);
+            imageView.setImageBitmap(bitmap);
+        }
+
+    }
+
     protected void onResume() {
 
-
-
         dataSource.open();
+        updateInterface(id);
         super.onResume();
-
 
     }
 
@@ -436,7 +545,6 @@ public class viewItem extends Activity{
         startActivity(intent);
 
     }
-
 
 }
 

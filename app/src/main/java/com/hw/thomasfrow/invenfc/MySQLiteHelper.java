@@ -7,6 +7,7 @@ import android.util.Log;
 
 public class MySQLiteHelper extends SQLiteOpenHelper {
 
+
     public static final String DATABASE_NAME = "InvenfcDatabase";
     public static final int DATABASE_VERSION = 1;
 
@@ -20,6 +21,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     public static final String BRAND = "brand";
     public static final String MODEL = "model";
     public static final String COMMENT = "comment";
+    public static final String TAG = "tag";
+    public static final String PHOTO = "photo";
+
 
 
     // Database creation sql statement
@@ -31,7 +35,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + ROOM + " text not null,"
             + BRAND + " text not null,"
             + MODEL + " text not null,"
-            + COMMENT + " text not null);";
+            + COMMENT + " text not null,"
+            + TAG + " integer not null,"
+            + PHOTO + " integer not null);";
 
     public MySQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

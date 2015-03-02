@@ -1,5 +1,7 @@
 package com.hw.thomasfrow.invenfc;
 
+import android.util.Log;
+
 /**
  * Created by thomas on 10/02/15.
  */
@@ -11,6 +13,8 @@ public class Item {
     private String brand;
     private String model;
     private String comment;
+    private int tag;
+    private int photo;
 
     public int getId() {
         return id;
@@ -67,6 +71,28 @@ public class Item {
 
     public void setComment(String comment){
        this.comment = comment;
+    }
+
+    public void setTag(int inputTag){
+        if(inputTag == 1){
+            Log.i("TAG","Setting tag to 1");
+            this.tag = 1;
+        }else{
+            this.tag = 0;
+        }
+    }
+
+    public boolean getTag(){
+        Log.i("TAG","getTag");
+        if(tag == 1){
+            Log.i("TAG","returning 1");
+
+            return true;
+        }else{
+            Log.i("TAG","returning 0");
+
+            return false;
+        }
     }
 
 

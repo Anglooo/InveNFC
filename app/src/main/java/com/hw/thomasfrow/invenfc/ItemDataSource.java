@@ -24,7 +24,9 @@ public class ItemDataSource {
             MySQLiteHelper.ROOM,
             MySQLiteHelper.BRAND,
             MySQLiteHelper.MODEL,
-            MySQLiteHelper.COMMENT };
+            MySQLiteHelper.COMMENT,
+            MySQLiteHelper.TAG,
+            MySQLiteHelper.PHOTO};
 
     public ItemDataSource() {
         dbHelper = new MySQLiteHelper(invenfc.getAppContext());
@@ -46,6 +48,8 @@ public class ItemDataSource {
         values.put(MySQLiteHelper.BRAND, brand);
         values.put(MySQLiteHelper.MODEL, model);
         values.put(MySQLiteHelper.COMMENT, comment);
+        values.put(MySQLiteHelper.TAG,0);
+        values.put(MySQLiteHelper.PHOTO,0);
 
 
         long insertId = database.insert(MySQLiteHelper.DATABASE_TABLE, null,
@@ -218,6 +222,7 @@ public class ItemDataSource {
         item.setBrand(cursor.getString(4));
         item.setModel(cursor.getString(5));
         item.setComment(cursor.getString(6));
+        item.setTag(cursor.getInt(7));
 
         return item;
     }
@@ -228,7 +233,6 @@ public class ItemDataSource {
 
         return success;
     }
-
 
 }
 
