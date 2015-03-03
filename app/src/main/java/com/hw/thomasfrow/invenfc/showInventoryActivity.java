@@ -25,13 +25,15 @@ import android.widget.Toolbar;
 
 import java.util.List;
 
+import com.parse.ParseUser;
+
 
 public class showInventoryActivity extends Activity {
 
     private ItemDataSource dataSource;
     private View view2;
-    private int ownerID;
-    private int ownID;
+    private String ownID;
+    ParseUser currentUser;
 
 
     @Override
@@ -39,10 +41,15 @@ public class showInventoryActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_inventory);
 
+        currentUser = ParseUser.getCurrentUser();
+
+
+
         SharedPreferences prefs = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
-        boolean loggedInStatus = prefs.getBoolean("isLoggedIn",false);
-        ownID = prefs.getInt("userID",9999);
-        Log.i("ownID1", Integer.toString(prefs.getInt("userID",9999)));
+
+        //ownID = prefs.getString("userID","9999");
+        ownID = currentUser.getObjectId();
+
 
         drawInterface();
 
@@ -76,7 +83,6 @@ public class showInventoryActivity extends Activity {
 
 
     }
-
 
     public void drawInterface(){
         dataSource = new ItemDataSource();
@@ -150,6 +156,7 @@ public class showInventoryActivity extends Activity {
         }else{
 
             View itemView = inflater.inflate(R.layout.inventory_empty,null, false);
+            Log.i("ID",ownID);
             inside.addView(itemView);
 
         }
@@ -332,10 +339,8 @@ public class showInventoryActivity extends Activity {
                         EditText modelEdit = (EditText)view2.findViewById(R.id.enterModel);
                         EditText commentEdit = (EditText)view2.findViewById(R.id.enterComment);
 
-                        int owner = 0;
-
-                        Log.i("ownID", Integer.toString(ownID));
-                        dataSource.createItem(ownID, nameEdit.getText().toString(), roomEdit.getText().toString(), brandEdit.getText().toString(), modelEdit.getText().toString(), commentEdit.getText().toString());
+                        dataSource.createItem(currentUser.getObjectId(), nameEdit.getText().toString(), roomEdit.getText().toString(), brandEdit.getText().toString(), modelEdit.getText().toString(), commentEdit.getText().toString());
+                        Log.i("UserIDAdd",currentUser.getObjectId());
                         drawInterface();
 
                     }
@@ -365,13 +370,15 @@ public class showInventoryActivity extends Activity {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
 
-                        int i = 0;
 
                         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("userDetails", getApplicationContext().MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPref.edit();
                         editor.putBoolean("isLoggedIn", false);
-                        editor.putInt("userID", 0 );
+                        editor.putString("userID","");
                         editor.commit();
+
+                        ParseUser.logOut();
+                        currentUser = ParseUser.getCurrentUser();
 
                         Intent intent = new Intent(getApplicationContext(), invenfc.class);
                         startActivity(intent);
@@ -389,7 +396,6 @@ public class showInventoryActivity extends Activity {
                 })
                 .show();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

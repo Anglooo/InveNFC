@@ -6,48 +6,44 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.*;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.NdefMessage;
 import android.nfc.tech.Ndef;
 import android.nfc.NdefRecord;
-
 import android.util.Log;
 import android.widget.Toast;
-import java.util.Arrays;
-import java.io.UnsupportedEncodingException;
 
-
+import com.parse.Parse;
+import com.parse.ParseUser;
+import com.parse.ParseACL;
+import com.parse.ParseAnonymousUtils;
+import com.parse.ParseObject;
 
 
 public class invenfc extends Activity {
 
     private static Context context;
-    private boolean loggedIn = false;
     int itemID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Code for deleting database
+        //context.deleteDatabase(MySQLiteHelper.DATABASE_NAME);
+
         setContentView(R.layout.activity_main);
         invenfc.context = getApplicationContext();
-
 
         Log.i("checkLoggedIn",Boolean.toString(checkLoggedIn()));
 
 
         if(checkLoggedIn()){
-            SharedPreferences prefs = getApplicationContext().getSharedPreferences("userDetails",Context.MODE_PRIVATE);
-            int userID = prefs.getInt("userID",12345);
-
 
             if(!readTag(getIntent())){
-                Log.i("ownerID1",Integer.toString(userID));
                 Intent intent = new Intent(this,showInventoryActivity.class);
                 startActivity(intent);
             }else{
@@ -128,17 +124,31 @@ public class invenfc extends Activity {
 
     private boolean checkLoggedIn() {
 
-        SharedPreferences prefs = getApplicationContext().getSharedPreferences("userDetails",Context.MODE_PRIVATE);
-        boolean defaultLogin = false;
+       // SharedPreferences prefs = getApplicationContext().getSharedPreferences("userDetails",Context.MODE_PRIVATE);
 
-        return prefs.getBoolean("isLoggedIn",defaultLogin);
+        // Determine whether the current user is an anonymous user
+        if (ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser())) {
+            // If user is anonymous, send the user to LoginSignupActivity.class
+            return false;
+        } else {
+            // If current user is NOT anonymous user
+            // Get current user data from Parse.com
+            ParseUser currentUser = ParseUser.getCurrentUser();
+            if (currentUser != null) {
+                // Send logged in users to Welcome.class
+                return true;
+
+            } else {
+                // Send user to LoginSignupActivity.class
+                return false;
+            }
+        }
 
      }
 
     public static Context getAppContext() {
         return invenfc.context;
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -158,7 +168,5 @@ public class invenfc extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
 
 }

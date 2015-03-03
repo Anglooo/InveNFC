@@ -7,7 +7,7 @@ import android.util.Log;
  */
 public class Item {
     private int id;
-    private int ownerID;
+    private String ownerID;
     private String name;
     private String room;
     private String brand;
@@ -24,14 +24,13 @@ public class Item {
         this.id = id;
     }
 
-    public int getOwnerID() {
+    public String getOwnerID() {
         return ownerID;
     }
 
-    public void setOwnerID(int ownerID) {
+    public void setOwnerID(String ownerID) {
         this.ownerID = ownerID;
     }
-
 
     public String getName(){
         return name;
@@ -95,9 +94,6 @@ public class Item {
         }
     }
 
-
-
-    // Will be used by the ArrayAdapter in the ListView
     @Override
     public String toString() {
 

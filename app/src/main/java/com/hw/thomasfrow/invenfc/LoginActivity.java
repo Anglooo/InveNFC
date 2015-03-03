@@ -10,12 +10,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.Toolbar;
 import android.content.SharedPreferences;
-import android.util.*;
+
+import com.parse.ParseUser;
+import com.parse.LogInCallback;
+import com.parse.ParseException;
+
 
 public class LoginActivity extends Activity{
 
     private boolean redirect;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,7 @@ public class LoginActivity extends Activity{
 
         });
 
-        toolbar.setNavigationIcon(R.drawable.ic_action_name);
+        toolbar.setTitle("Login to Invenfc");
 
     }
 
@@ -64,6 +67,11 @@ public class LoginActivity extends Activity{
             case R.id.loginButton:
                 performLogin();
                 break;
+
+            case R.id.signUpButton:
+                Intent intent = new Intent(this, SignUpActivity.class);
+                startActivity(intent);
+                break;
         }
 
     }
@@ -72,46 +80,55 @@ public class LoginActivity extends Activity{
 
         EditText username = (EditText)findViewById(R.id.editTextUsername);
         EditText password = (EditText)findViewById(R.id.editTextPassword);
+        String usernameTxt = username.getText().toString();
+        String passwordTxt = password.getText().toString();
 
         if(username.getText().toString().trim().length() != 0) {
 
-            boolean loginSuccess = true;
-            if (loginSuccess) {
-
-                int userID = Integer.parseInt(username.getText().toString());
-
-                Log.i("inputID",username.getText().toString());
-                Log.i("inputID",Integer.toString(userID));
-                SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("userDetails", getApplicationContext().MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putBoolean("isLoggedIn", true);
-                editor.putInt("userID", userID);
-                editor.commit();
-
-                if(redirect){
-                    int redirID = getIntent().getExtras().getInt("redirID");
-
-                    Intent intent = new Intent(this, viewItem.class);
-                    intent.putExtra("id", redirID);
-                    startActivity(intent);
-
-                }else{
-                    Intent intent = new Intent(this, showInventoryActivity.class);
-                    intent.putExtra("userID", userID);
-                    startActivity(intent);
-
-                }
-
-
-
-            }
+            ParseUser.logInInBackground(usernameTxt, passwordTxt,
+                    new LogInCallback() {
+                        public void done(ParseUser user, ParseException e) {
+                            if (user != null) {
+                                // If user exist and authenticated, send user to Welcome.class
+                                loginSuccess(user.getObjectId());
+                            } else {
+                                Toast.makeText(
+                                        getApplicationContext(),
+                                        "No such user exist, please signup",
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
 
         }else{
-            Toast.makeText(this,"Nothing entered into name",Toast.LENGTH_SHORT);
+            Toast.makeText(this, "Nothing entered into name", Toast.LENGTH_SHORT);
         }
 
 
 
+    }
+
+    public void loginSuccess(String userID){
+
+        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("userDetails", getApplicationContext().MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("isLoggedIn", true);
+        editor.putString("userID", userID);
+        editor.commit();
+
+        if(redirect){
+            int redirID = getIntent().getExtras().getInt("redirID");
+
+            Intent intent = new Intent(this, viewItem.class);
+            intent.putExtra("id", redirID);
+            startActivity(intent);
+
+        }else{
+            Intent intent = new Intent(this, showInventoryActivity.class);
+            intent.putExtra("userID", userID);
+            startActivity(intent);
+
+        }
     }
 
     @Override

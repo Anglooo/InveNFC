@@ -28,7 +28,7 @@ public class filteredInventoryActivity extends ActionBarActivity {
     private View view2;
     private View viewSearch;
     private int ownerID;
-    private int ownID;
+    private String ownID;
     private boolean isFiltered = false;
     private ContentValues values;
 

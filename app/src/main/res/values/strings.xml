@@ -22,5 +22,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_create_tag">createTagActivity</string>
     <string name="title_activity_filtered_inventory">filteredInventoryActivity</string>
+    <string name="title_activity_invenfc_application">InvenfcApplication</string>
 
 </resources>

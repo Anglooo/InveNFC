@@ -40,7 +40,7 @@ public class ItemDataSource {
         dbHelper.close();
     }
 
-    public Item createItem(int ownerID, String name, String room, String brand, String model, String comment ) {
+    public Item createItem(String ownerID, String name, String room, String brand, String model, String comment ) {
         ContentValues values = new ContentValues();
         values.put(MySQLiteHelper.OWNERID, ownerID);
         values.put(MySQLiteHelper.NAME, name);
@@ -77,7 +77,6 @@ public class ItemDataSource {
                 + " = " + id, null);
     }
 
-
     public List<Item> getAllItems() {
         List<Item> items = new ArrayList<Item>();
 
@@ -95,7 +94,7 @@ public class ItemDataSource {
         return items;
     }
 
-    public List<Item> filterItems(int ownerID, ContentValues content) {
+    public List<Item> filterItems(String ownerID, ContentValues content) {
         List<Item> items = new ArrayList<Item>();
 
         String query = ("SELECT * FROM Items WHERE ownerID = " + ownerID);
@@ -169,7 +168,6 @@ public class ItemDataSource {
         return items;
     }
     
-    
     public boolean isContainedIn(Item item, List<Item> items){
         
         int max = items.size();
@@ -185,10 +183,10 @@ public class ItemDataSource {
         
     }
 
-    public List<Item> getItemsByOwner(int ownerID) {
+    public List<Item> getItemsByOwner(String ownerID) {
         List<Item> items = new ArrayList<Item>();
 
-        Cursor cursor = database.rawQuery("SELECT * FROM Items WHERE ownerID = "+ ownerID, null);
+        Cursor cursor = database.rawQuery("SELECT * FROM Items WHERE ownerID = '"+ ownerID+ "'", null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -216,7 +214,7 @@ public class ItemDataSource {
         Item item = new Item();
 
         item.setId(cursor.getInt(0));
-        item.setOwnerID(cursor.getInt(1));
+        item.setOwnerID(cursor.getString(1));
         item.setName(cursor.getString(2));
         item.setRoom(cursor.getString(3));
         item.setBrand(cursor.getString(4));

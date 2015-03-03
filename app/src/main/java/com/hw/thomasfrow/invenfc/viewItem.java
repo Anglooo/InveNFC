@@ -31,17 +31,20 @@ import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
 import java.io.File;
 
+import com.parse.ParseUser;
+
 
 public class viewItem extends Activity{
 
     private ItemDataSource dataSource;
     private View view2;
     private Item item;
-    private int ownID;
+    private String ownID;
     private boolean addButtonPressed = false;
     int id;
     static final int REQUEST_TAKE_PHOTO = 1;
     ImageView imageView;
+    ParseUser currentUser;
 
 
 
@@ -51,6 +54,7 @@ public class viewItem extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_item2);
 
+        currentUser = ParseUser.getCurrentUser();
 
 
         if(getIntent().getExtras() != null){
@@ -65,7 +69,8 @@ public class viewItem extends Activity{
 
         SharedPreferences prefs = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
         boolean loggedInStatus = prefs.getBoolean("isLoggedIn",false);
-        ownID = prefs.getInt("userID",9999);
+        ownID = currentUser.getObjectId();
+        Log.i("UserIDView",currentUser.getObjectId());
 
         if(loggedInStatus != true){
             new AlertDialog.Builder(this)
@@ -85,7 +90,11 @@ public class viewItem extends Activity{
                     .show();
         }else{
 
-            if(ownID != item.getOwnerID()){
+            Log.i("UserIDCompareOwnID",currentUser.getObjectId());
+            Log.i("UserIDCompareOwnID",item.getOwnerID());
+
+
+            if(!ownID.equals(item.getOwnerID())){
                 new AlertDialog.Builder(this)
                         .setTitle("Permission Denied")
                         .setView(R.layout.dialog_not_owner)
@@ -163,31 +172,48 @@ public class viewItem extends Activity{
         TextView editView;
 
 
-        //ImageView imageView = (ImageView)findViewById(R.id.itemImageView);
-
         editView = (TextView)this.findViewById(R.id.nameOutView);
         editView.setText(item.getName());
-
 
         editView = (TextView)this.findViewById(R.id.outIDView);
         editView.setText(Integer.toString(item.getId()));
 
-
         editView = (TextView)findViewById(R.id.outBrandView);
-        editView.setText(item.getBrand());
+        if(item.getBrand().equals("")){
+            editView.setText("Edit item to add a value.");
+        }else{
+            editView.setText(item.getBrand());
+        }
 
         editView = (TextView)findViewById(R.id.outModelView);
-        editView.setText(item.getModel());
+        if(item.getModel().equals("")){
+            editView.setText("Edit item to add a value.");
+        }else{
+            editView.setText(item.getModel());
+        }
 
         editView = (TextView)findViewById(R.id.outRoomView);
-        editView.setText(item.getRoom());
-
+        if(item.getRoom().equals("")){
+            editView.setText("Edit item to add a value.");
+        }else{
+            editView.setText(item.getRoom());
+        }
+        
         editView = (TextView)findViewById(R.id.outCommentView);
-        editView.setText(item.getComment());
+        if(item.getComment().equals("")){
+            editView.setText("Edit item to add a value.");
+        }else{
+            editView.setText(item.getComment());
+        }
 
         editView = (TextView)findViewById(R.id.outTagView);
-        Log.i("TAG-View",Boolean.toString(item.getTag()));
-        editView.setText(Boolean.toString(item.getTag()));
+        if(item.getTag()){
+            editView.setText("A tag exists for this item");
+        }else{
+            editView.setText("There is no tag for this item");
+
+        }
+
 
     }
 
@@ -501,6 +527,7 @@ public class viewItem extends Activity{
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inPreferredConfig = Bitmap.Config.ARGB_8888;
             Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(), options);
+            //bitmap.setWidth(100);
             imageView.setImageBitmap(bitmap);
         }
 

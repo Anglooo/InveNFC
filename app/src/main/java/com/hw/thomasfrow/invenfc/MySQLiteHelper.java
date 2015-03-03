@@ -30,7 +30,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     private static final String DATABASE_CREATE = "create table "
             + DATABASE_TABLE + " ("
             + ID + " integer primary key autoincrement, "
-            + OWNERID + " integer not null, "
+            + OWNERID + " text not null, "
             + NAME + " text not null,"
             + ROOM + " text not null,"
             + BRAND + " text not null,"

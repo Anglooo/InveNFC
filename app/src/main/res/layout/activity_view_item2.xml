@@ -30,10 +30,24 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#6d000000"
+                android:backgroundTintMode="src_over"></LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#3b000000"
+                android:backgroundTintMode="src_over" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
                 android:layout_height="40dp"
                 android:layout_marginLeft="72dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="5dp">
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -61,7 +75,8 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="72dp"
                 android:background="@color/divider"
-                android:layout_marginBottom="5dp">
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="0dp">
 
             </LinearLayout>
 
@@ -69,8 +84,9 @@
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="72dp">
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="72dp"
+                android:layout_marginTop="8dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -100,14 +116,16 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="72dp"
                 android:background="@color/divider"
-                android:layout_marginBottom="5dp" />
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="0dp" />
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="72dp">
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="72dp"
+                android:layout_marginTop="8dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -138,14 +156,16 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="72dp"
                 android:background="@color/divider"
-                android:layout_marginBottom="5dp" />
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="0dp" />
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="72dp">
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="72dp"
+                android:layout_marginTop="8dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -177,14 +197,16 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="72dp"
                 android:background="@color/divider"
-                android:layout_marginBottom="5dp" />
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="0dp" />
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="72dp">
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="72dp"
+                android:layout_marginTop="8dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -215,45 +237,29 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="72dp"
                 android:background="@color/divider"
-                android:layout_marginBottom="5dp" />
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="0dp" />
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="72dp">
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="72dp"
+                android:layout_marginTop="8dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Has tag?"
-                    android:id="@+id/hasTagView"
+                    android:text="TAG"
+                    android:id="@+id/outTagView"
                     android:layout_marginBottom="2dp"
                     android:typeface="normal"
                     android:textSize="16dp"
                     android:textColor="@color/primary_text" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Tag Placeholder"
-                    android:id="@+id/outTagView"
-                    android:layout_marginLeft="0dp"
-                    android:typeface="normal"
-                    android:textSize="14dp"
-                    android:textColor="@color/secondary_text" />
             </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="72dp"
-                android:background="@color/divider"
-                android:layout_marginBottom="5dp" />
 
             <LinearLayout
                 android:orientation="horizontal"
