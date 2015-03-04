@@ -43,6 +43,16 @@ public class showInventoryActivity extends Activity {
 
         currentUser = ParseUser.getCurrentUser();
 
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        //boolean firstLogin = extras.getBoolean("firstLogin");
+
+        if(extras != null){
+            if(extras.containsKey("firstLogin")){
+                String toastString = "Welcome " + currentUser.getUsername() + ". To add an item, press the + button.";
+                Toast.makeText(this, toastString,Toast.LENGTH_LONG).show();
+            }
+        }
 
 
         SharedPreferences prefs = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
@@ -156,7 +166,7 @@ public class showInventoryActivity extends Activity {
         }else{
 
             View itemView = inflater.inflate(R.layout.inventory_empty,null, false);
-            Log.i("ID",ownID);
+            //Log.i("ID",ownID);
             inside.addView(itemView);
 
         }
@@ -211,9 +221,12 @@ public class showInventoryActivity extends Activity {
 
                 filterItemInterface();
 
-                
-
                 break;
+
+            case R.id.button_account:
+
+                Intent intent = new Intent(this, showUserActivity.class);
+                startActivity(intent);
 
         }
     }
@@ -374,7 +387,7 @@ public class showInventoryActivity extends Activity {
                         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("userDetails", getApplicationContext().MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPref.edit();
                         editor.putBoolean("isLoggedIn", false);
-                        editor.putString("userID","");
+                        editor.putString("userID", "");
                         editor.commit();
 
                         ParseUser.logOut();

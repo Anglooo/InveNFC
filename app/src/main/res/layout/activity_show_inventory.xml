@@ -59,4 +59,16 @@
         android:layout_marginLeft="0dp"
         android:onClick="onClick"/>
 
+    <ImageButton
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:id="@+id/button_account"
+        android:background="@mipmap/account_icon"
+        android:onClick="onClick"
+        android:layout_marginRight="18dp"
+        android:layout_alignTop="@+id/button_search"
+        android:layout_toLeftOf="@+id/button_search"
+        android:layout_toStartOf="@+id/button_search"
+        android:layout_marginEnd="18dp" />
+
 </RelativeLayout>

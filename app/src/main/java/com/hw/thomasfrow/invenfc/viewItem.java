@@ -68,7 +68,14 @@ public class viewItem extends Activity{
         item = dataSource.getItemByID(id);
 
         SharedPreferences prefs = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
-        boolean loggedInStatus = prefs.getBoolean("isLoggedIn",false);
+        boolean loggedInStatus = false;
+
+        if(currentUser != null){
+
+            loggedInStatus = true;
+
+        }
+
         ownID = currentUser.getObjectId();
         Log.i("UserIDView",currentUser.getObjectId());
 

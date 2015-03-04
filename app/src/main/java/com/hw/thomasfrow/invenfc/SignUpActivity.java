@@ -84,9 +84,6 @@ public class SignUpActivity extends Activity{
         String emailTxt =  email.getText().toString();
 
         boolean signUpNameError = false;
-        boolean signUpPassError = false;
-        boolean signUpEmailError = false;
-
 
         if(username.getText().toString().trim().length() != 0) {
             if(passwordTxt.toString().trim().length() != 0){
@@ -95,23 +92,25 @@ public class SignUpActivity extends Activity{
 
                     user.setUsername(usernameTxt);
                     user.setPassword(passwordTxt);
-                    user.setEmail("abc@abc1.co.uk");
+                    user.setEmail(emailTxt);
 
                     user.signUpInBackground(new SignUpCallback() {
                         public void done(ParseException e) {
                             if (e == null) {
-                                Toast.makeText(getApplicationContext(),"Sign up success",Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(getApplicationContext(), showInventoryActivity.class);
+                                intent.putExtra("firstLogin",true);
+                                startActivity(intent);
                             } else {
-                                Log.i("parse",e.toString());
+                                Log.i("parse", e.toString());
                             }
                         }
                     });
 
                 }else{
-                    signUpEmailError = true;
+                    signUpNameError = true;
                 }
             }else{
-                signUpPassError = true;
+                signUpNameError = true;
             }
 
         }else{
@@ -119,36 +118,11 @@ public class SignUpActivity extends Activity{
         }
 
         if(signUpNameError == true){
-        }
-        if(signUpEmailError == true){
-        }
-        if(signUpPassError == true){
+
+            Toast.makeText(this, "You have not filled in all appropriate fields.",Toast.LENGTH_LONG).show();
         }
 
-    }
 
-    public void loginSuccess(){
-        int userID = 0;
-
-        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("userDetails", getApplicationContext().MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putBoolean("isLoggedIn", true);
-        editor.putInt("userID", userID);
-        editor.commit();
-
-        if(redirect){
-            int redirID = getIntent().getExtras().getInt("redirID");
-
-            Intent intent = new Intent(this, viewItem.class);
-            intent.putExtra("id", redirID);
-            startActivity(intent);
-
-        }else{
-            Intent intent = new Intent(this, showInventoryActivity.class);
-            intent.putExtra("userID", userID);
-            startActivity(intent);
-
-        }
     }
 
 

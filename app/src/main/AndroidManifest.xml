@@ -16,11 +16,11 @@
         android:required="false" />
 
     <application
+        android:name=".InvenfcApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:name="com.hw.thomasfrow.invenfc.InvenfcApplication">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".LoginActivity"
             android:label="@string/app_name"
@@ -83,6 +83,10 @@
         <activity
             android:name=".InvenfcApplication"
             android:label="@string/title_activity_invenfc_application" >
+        </activity>
+        <activity
+            android:name=".showUserActivity"
+            android:label="@string/title_activity_show_user" >
         </activity>
     </application>
 

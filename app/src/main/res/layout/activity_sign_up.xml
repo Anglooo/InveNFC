@@ -19,7 +19,8 @@
             android:minHeight="?android:attr/actionBarSize"
             android:background="@color/primary"
             android:theme="@style/ActionBarOverlay"
-            android:popupTheme="@android:style/Theme.Material.Light" />
+            android:popupTheme="@android:style/Theme.Material.Light"
+            android:title="Sign Up" />
 
         <LinearLayout
             android:orientation="horizontal"

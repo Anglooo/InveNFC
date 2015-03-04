@@ -14,7 +14,8 @@
         android:minHeight="?android:attr/actionBarSize"
         android:background="@color/primary"
         android:theme="@style/ActionBarOverlay"
-        android:popupTheme="@android:style/Theme.Material.Light" />
+        android:popupTheme="@android:style/Theme.Material.Light"
+        android:title="Login" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -101,7 +102,8 @@
             android:onClick="onClick"
             android:layout_below="@+id/linearLayout2"
             android:layout_alignLeft="@+id/linearLayout2"
-            android:layout_alignStart="@+id/linearLayout2" />
+            android:layout_alignStart="@+id/linearLayout2"
+            android:layout_marginRight="8dp" />
 
         <Button
             android:layout_width="wrap_content"
@@ -111,7 +113,8 @@
             android:onClick="onClick"
             android:layout_alignTop="@+id/signUpButton"
             android:layout_toRightOf="@+id/signUpButton"
-            android:layout_toEndOf="@+id/signUpButton" />
+            android:layout_toEndOf="@+id/signUpButton"
+            android:layout_marginLeft="8dp" />
     </LinearLayout>
 
 </RelativeLayout>

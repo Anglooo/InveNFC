@@ -1,0 +1,289 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hw.thomasfrow.invenfc.showUserActivity"
+    android:clickable="false"
+    android:background="@color/background"
+    android:focusableInTouchMode="false"
+    android:id="@+id/fullScreenLayout">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView2"
+        android:layout_below="@+id/fabOpenAddMenu"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/background">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mainLayout"
+            android:weightSum="1"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#6d000000"
+                android:backgroundTintMode="src_over"></LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#3b000000"
+                android:backgroundTintMode="src_over" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="72dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="User ID"
+                    android:id="@+id/itemIdView"
+                    android:typeface="normal"
+                    android:textSize="16sp"
+                    android:textColor="@color/primary_text" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ID"
+                    android:id="@+id/outIDView"
+                    android:typeface="normal"
+                    android:textSize="14dp"
+                    android:textColor="@color/secondary_text" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="72dp"
+                android:background="@color/divider"
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="0dp">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="72dp"
+                android:layout_marginTop="8dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Username"
+                    android:id="@+id/textView15"
+                    android:layout_marginBottom="2dp"
+                    android:typeface="normal"
+                    android:textSize="16dp"
+                    android:textColor="@color/primary_text" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Placeholder"
+                    android:id="@+id/outUserNameView"
+                    android:layout_marginLeft="0dp"
+                    android:typeface="normal"
+                    android:textSize="14dp"
+                    android:textColor="@color/secondary_text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="72dp"
+                android:background="@color/divider"
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="0dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="72dp"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Email"
+                    android:id="@+id/textView14"
+                    android:layout_marginBottom="2dp"
+                    android:typeface="normal"
+                    android:textSize="16dp"
+                    android:textColor="@color/primary_text" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Placeholder"
+                    android:id="@+id/outEmailView"
+                    android:layout_marginLeft="0dp"
+                    android:typeface="normal"
+                    android:textSize="14dp"
+                    android:textColor="@color/secondary_text" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="72dp"
+                android:background="@color/divider"
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="0dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="72dp"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Account created"
+                    android:id="@+id/itemBrandView"
+                    android:layout_marginBottom="2dp"
+                    android:typeface="normal"
+                    android:textSize="16dp"
+                    android:textColor="@color/primary_text" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Placeholder"
+                    android:id="@+id/outCreatedView"
+                    android:layout_marginLeft="0dp"
+                    android:typeface="normal"
+                    android:textSize="14dp"
+                    android:textColor="@color/secondary_text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="72dp"
+                android:background="@color/divider"
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="0dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="72dp"
+                android:layout_marginTop="8dp">
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="275dp"
+        android:id="@+id/itemImageView"
+        android:clickable="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@color/primary" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EXAMPLE NAME"
+        android:id="@+id/nameOutView"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        android:layout_above="@+id/scrollView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="45dp"
+        android:layout_marginBottom="30dp"
+        android:textColor="@color/text_icons" />
+
+    <ImageButton
+        android:id="@+id/fabOpenAddMenu"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_alignBottom="@id/itemImageView"
+        android:layout_marginBottom="-30dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/button_picker_plus"
+        android:onClick="onClick"
+        />
+
+    <Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/toolbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?android:attr/actionBarSize"
+        android:background="@android:color/transparent"
+        android:theme="@style/ActionBarOverlay"
+        android:popupTheme="@android:style/Theme.Material.Light"/>
+
+    <ImageButton
+        android:id="@+id/addPhotoButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="@drawable/button_camera"
+        android:onClick="onClick"
+        android:layout_marginRight="25dp"
+        android:visibility="gone"
+        android:layout_marginTop="315dp" />
+
+    <ImageButton
+        android:id="@+id/addTagButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="@drawable/button_tag"
+        android:onClick="onClick"
+        android:layout_marginRight="25dp"
+        android:visibility="gone"
+        android:layout_marginTop="370dp" />
+
+</RelativeLayout>
