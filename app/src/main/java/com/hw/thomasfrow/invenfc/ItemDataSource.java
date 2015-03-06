@@ -97,7 +97,7 @@ public class ItemDataSource {
     public List<Item> filterItems(String ownerID, ContentValues content) {
         List<Item> items = new ArrayList<Item>();
 
-        String query = ("SELECT * FROM Items WHERE ownerID = " + ownerID);
+        String query = ("SELECT * FROM Items WHERE ownerID = '" + ownerID + "'");
         String newQuery = "";
 
         for (String key : content.keySet()) {
@@ -116,7 +116,7 @@ public class ItemDataSource {
         }
         cursor.close();
 
-        String queryLike2 = ("SELECT * FROM Items WHERE ownerID = " + ownerID);
+        String queryLike2 = ("SELECT * FROM Items WHERE ownerID = '" + ownerID + "'");
 
         for (String key : content.keySet()) {
             String myKey = key;
@@ -139,7 +139,7 @@ public class ItemDataSource {
 
         Log.i("FILTER", queryLike2);
 
-        String queryLike1 = ("SELECT * FROM Items WHERE ownerID = " + ownerID);
+        String queryLike1 = ("SELECT * FROM Items WHERE ownerID = '" + ownerID + "'");
 
         for (String key : content.keySet()) {
             String myKey = key;

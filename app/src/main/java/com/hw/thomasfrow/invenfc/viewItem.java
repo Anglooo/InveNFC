@@ -227,7 +227,7 @@ public class viewItem extends Activity{
     public void onClick(final View view) {
 
         switch (view.getId()) {
-            case R.id.fabOpenAddMenu:
+            case R.id.fabCameraButton:
                 TextView test = (TextView)findViewById(R.id.nameOutView);
 
 
@@ -235,7 +235,7 @@ public class viewItem extends Activity{
                 ImageButton addPhoto = (ImageButton)findViewById(R.id.addPhotoButton);
                 ImageButton addTag = (ImageButton)findViewById(R.id.addTagButton);
 
-                ImageButton openAddMenu = (ImageButton)findViewById(R.id.fabOpenAddMenu);
+                ImageButton openAddMenu = (ImageButton)findViewById(R.id.fabCameraButton);
 
 
                 if(!addButtonPressed){

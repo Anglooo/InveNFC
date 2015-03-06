@@ -1,7 +1,6 @@
 package com.hw.thomasfrow.invenfc;
 
 import android.app.AlertDialog;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,7 +37,6 @@ public class showUserActivity extends ActionBarActivity {
     private View view2;
     private String ownID;
     ParseUser currentUser;
-    boolean addButtonPressed = false;
     static final int REQUEST_TAKE_PHOTO = 1;
     ImageView imageView;
 
@@ -65,22 +62,22 @@ public class showUserActivity extends ActionBarActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        toolbar.inflateMenu(R.menu.menu_view_item);
+        toolbar.inflateMenu(R.menu.menu_show_user);
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
 
                 switch (menuItem.getItemId()) {
-                    case R.id.action_editItem:
+                    case R.id.action_editUser:
 
-                        //editItemInterface();
+                        drawEditInterface();
 
                         return true;
 
                     case R.id.action_deleteItem:
 
-                        //deleteItemInterface();
+
 
                         return true;
                 }
@@ -138,42 +135,8 @@ public class showUserActivity extends ActionBarActivity {
     public void onClick(final View view) {
 
         switch (view.getId()) {
-            case R.id.fabOpenAddMenu:
 
-
-                ImageButton addPhoto = (ImageButton) findViewById(R.id.addPhotoButton);
-                ImageButton addTag = (ImageButton) findViewById(R.id.addTagButton);
-
-                ImageButton openAddMenu = (ImageButton) findViewById(R.id.fabOpenAddMenu);
-
-
-                if (!addButtonPressed) {
-                    addButtonPressed = !addButtonPressed;
-
-                    openAddMenu.setBackgroundResource(R.drawable.button_cross);
-
-                    addPhoto.setVisibility(View.VISIBLE);
-
-                    addTag.setVisibility(View.VISIBLE);
-
-
-                } else {
-
-                    openAddMenu.setBackgroundResource(R.drawable.button_picker_plus);
-
-
-                    addButtonPressed = !addButtonPressed;
-
-                    addPhoto.setVisibility(View.GONE);
-
-                    addTag.setVisibility(View.GONE);
-
-                }
-
-
-                break;
-
-            case R.id.addPhotoButton:
+            case R.id.fabCameraButton:
 
 
                 dispatchTakePictureIntent();
@@ -274,6 +237,103 @@ public class showUserActivity extends ActionBarActivity {
 
     }
 
+    private void drawEditInterface(){
+
+        LayoutInflater inflater = this.getLayoutInflater();
+        view2 = inflater.inflate(R.layout.dialog_edit_account, null);
+        new AlertDialog.Builder(this)
+                .setTitle("Edit Account Details")
+                .setView(view2)
+
+                .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        final EditText nameEdit = (EditText)view2.findViewById(R.id.enterName);
+                        final EditText usernameEdit = (EditText)view2.findViewById(R.id.enterUsername);
+                        final EditText emailEdit = (EditText)view2.findViewById(R.id.enterEmail);
+                        final EditText newPass1Edit = (EditText)view2.findViewById(R.id.enterNewPass1);
+                        final EditText newPass2Edit = (EditText)view2.findViewById(R.id.enterNewPass2);
+
+
+                        CheckBox checkName = (CheckBox)view2.findViewById(R.id.checkName);
+                        CheckBox checkUsername = (CheckBox)view2.findViewById(R.id.checkUsername);
+                        CheckBox checkEmail = (CheckBox)view2.findViewById(R.id.checkEmail);
+                        CheckBox checkPass = (CheckBox)view2.findViewById(R.id.checkPassword);
+
+                        boolean hasUpdated = false;
+
+                        if(checkName.isChecked()){
+                            String editedName = nameEdit.getText().toString();
+                            if(editedName.trim().length() == 0){
+                                Toast.makeText(getApplicationContext(),"Please insert a value to edit in Name",Toast.LENGTH_SHORT).show();
+                            }else{
+                                currentUser.put("name",editedName);
+                                hasUpdated = true;
+                            }
+                        }
+
+                        if(checkUsername.isChecked()){
+                            String editedUsername = usernameEdit.getText().toString();
+                            if(editedUsername.trim().length() == 0){
+                                Toast.makeText(getApplicationContext(),"Please insert a value to edit in Username",Toast.LENGTH_SHORT).show();
+                            }else{
+                                currentUser.setUsername(editedUsername);
+                                hasUpdated = true;
+                            }
+                        }
+
+                        if(checkEmail.isChecked()){
+                            String editedEmail = emailEdit.getText().toString();
+                            if(editedEmail.trim().length() == 0){
+                                Toast.makeText(getApplicationContext(),"Please insert a value to edit in Email",Toast.LENGTH_SHORT).show();
+                            }else{
+                                currentUser.setEmail(editedEmail);
+                                hasUpdated = true;
+                            }
+                        }
+
+                        if(checkPass.isChecked()){
+                            String newPass1 = newPass1Edit.getText().toString();
+                            String newPass2 = newPass2Edit.getText().toString();
+                            if(newPass1.trim().length() == 0){
+                                Toast.makeText(getApplicationContext(),"Please insert your a new password.", Toast.LENGTH_SHORT);
+                            }else{
+                                if(newPass1.equals(newPass2)){
+                                    currentUser.setPassword(newPass1);
+                                }else{
+                                    Toast.makeText(getApplicationContext(),"Password values do not match.", Toast.LENGTH_SHORT);
+                                }
+                            }
+                        }
+
+                        if(!hasUpdated){
+                            Toast.makeText(getApplicationContext(),"No values inserted. Nothing has been changed.",Toast.LENGTH_LONG).show();
+                        }else{
+
+                            currentUser.saveInBackground();
+                            updateInterface();
+                            Toast.makeText(getApplicationContext(),"Updates done successfully.",Toast.LENGTH_LONG).show();
+
+                        }
+
+                    }
+                })
+
+                .setCancelable(true)
+
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+                    }
+                })
+                .show();
+
+
+
+    }
+
     protected void onResume() {
 
         updateInterface();
@@ -285,7 +345,6 @@ public class showUserActivity extends ActionBarActivity {
     protected void onPause() {
         super.onPause();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

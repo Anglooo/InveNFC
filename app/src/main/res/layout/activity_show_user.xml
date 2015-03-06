@@ -11,7 +11,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/scrollView2"
-        android:layout_below="@+id/fabOpenAddMenu"
+        android:layout_below="@+id/fabCameraButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="@color/background">
@@ -241,7 +241,7 @@
         android:textColor="@color/text_icons" />
 
     <ImageButton
-        android:id="@+id/fabOpenAddMenu"
+        android:id="@+id/fabCameraButton"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_alignParentRight="true"
@@ -249,7 +249,7 @@
         android:layout_alignBottom="@id/itemImageView"
         android:layout_marginBottom="-30dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/button_picker_plus"
+        android:background="@drawable/button_camera"
         android:onClick="onClick"
         />
 
@@ -261,29 +261,5 @@
         android:background="@android:color/transparent"
         android:theme="@style/ActionBarOverlay"
         android:popupTheme="@android:style/Theme.Material.Light"/>
-
-    <ImageButton
-        android:id="@+id/addPhotoButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentRight="true"
-        android:gravity="center_vertical|center_horizontal"
-        android:background="@drawable/button_camera"
-        android:onClick="onClick"
-        android:layout_marginRight="25dp"
-        android:visibility="gone"
-        android:layout_marginTop="315dp" />
-
-    <ImageButton
-        android:id="@+id/addTagButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentRight="true"
-        android:gravity="center_vertical|center_horizontal"
-        android:background="@drawable/button_tag"
-        android:onClick="onClick"
-        android:layout_marginRight="25dp"
-        android:visibility="gone"
-        android:layout_marginTop="370dp" />
 
 </RelativeLayout>

@@ -19,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.parse.ParseUser;
+
 import java.util.List;
 
 
@@ -31,11 +33,15 @@ public class filteredInventoryActivity extends ActionBarActivity {
     private String ownID;
     private boolean isFiltered = false;
     private ContentValues values;
+    ParseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filtered_inventory);
+
+        currentUser = ParseUser.getCurrentUser();
+        ownID = currentUser.getObjectId();
 
         Bundle bundle = getIntent().getExtras();
 
@@ -82,114 +88,114 @@ public class filteredInventoryActivity extends ActionBarActivity {
         LinearLayout inside = (LinearLayout)findViewById(R.id.list_item);
         inside.removeAllViews();
 
+        View headerView = inflater.inflate(R.layout.filter_list,null,false);
+
+        final Intent intent = new Intent(this, showInventoryActivity.class);
+
+
+        if(values.containsKey(MySQLiteHelper.NAME)){
+
+            TextView nameView = (TextView)headerView.findViewById(R.id.outNameFilter);
+            nameView.setText(values.getAsString(MySQLiteHelper.NAME));
+
+            ImageButton nameButton = (ImageButton)headerView.findViewById(R.id.imageButtonNameFilter);
+            nameButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    values.remove(MySQLiteHelper.NAME);
+                    if(values.size() != 0){
+                        drawFilterInterface();
+                    }else{
+                        startActivity(intent);
+                    }
+                }
+            });
+
+        }else{
+
+            LinearLayout nameLay = (LinearLayout)headerView.findViewById(R.id.nameFilterLayout);
+            nameLay.setVisibility(View.GONE);
+
+        }
+
+        if(values.containsKey(MySQLiteHelper.ROOM)){
+
+            TextView nameView = (TextView)headerView.findViewById(R.id.outRoomFilter);
+            nameView.setText(values.getAsString(MySQLiteHelper.ROOM));
+
+            ImageButton nameButton = (ImageButton)headerView.findViewById(R.id.imageButtonRoomFilter);
+            nameButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    values.remove(MySQLiteHelper.ROOM);
+                    if(values.size() != 0){
+                        drawFilterInterface();
+                    }else{
+                        startActivity(intent);
+                    }
+                }
+            });
+
+        }else{
+
+            LinearLayout lay = (LinearLayout)headerView.findViewById(R.id.roomFilterLayout);
+            lay.setVisibility(View.GONE);
+
+        }
+
+        if(values.containsKey(MySQLiteHelper.MODEL)){
+
+            TextView nameView = (TextView)headerView.findViewById(R.id.outModelFilter);
+            nameView.setText(values.getAsString(MySQLiteHelper.MODEL));
+
+            ImageButton nameButton = (ImageButton)headerView.findViewById(R.id.imageButtonModelFilter);
+            nameButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    values.remove(MySQLiteHelper.MODEL);
+                    if(values.size() != 0){
+                        drawFilterInterface();
+                    }else{
+                        startActivity(intent);
+                    }
+                }
+            });
+
+        }else{
+
+            LinearLayout lay = (LinearLayout)headerView.findViewById(R.id.modelFilterLayout);
+            lay.setVisibility(View.GONE);
+
+        }
+
+        if(values.containsKey(MySQLiteHelper.BRAND)){
+
+            TextView nameView = (TextView)headerView.findViewById(R.id.outBrandFilter);
+            nameView.setText(values.getAsString(MySQLiteHelper.BRAND));
+
+            ImageButton nameButton = (ImageButton)headerView.findViewById(R.id.imageButtonBrandFilter);
+            nameButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    values.remove(MySQLiteHelper.BRAND);
+                    if(values.size() != 0){
+                        drawFilterInterface();
+                    }else{
+                        startActivity(intent);
+                    }
+                }
+            });
+
+        }else{
+
+            LinearLayout lay = (LinearLayout)headerView.findViewById(R.id.brandFilterLayout);
+            lay.setVisibility(View.GONE);
+
+        }
+
+        inside.addView(headerView);
+
         if(items.size() != 0){
-
-            View headerView = inflater.inflate(R.layout.filter_list,null,false);
-
-            final Intent intent = new Intent(this, showInventoryActivity.class);
-
-
-            if(values.containsKey(MySQLiteHelper.NAME)){
-
-                TextView nameView = (TextView)headerView.findViewById(R.id.outNameFilter);
-                nameView.setText(values.getAsString(MySQLiteHelper.NAME));
-
-                ImageButton nameButton = (ImageButton)headerView.findViewById(R.id.imageButtonNameFilter);
-                nameButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        values.remove(MySQLiteHelper.NAME);
-                        if(values.size() != 0){
-                            drawFilterInterface();
-                        }else{
-                            startActivity(intent);
-                        }
-                    }
-                });
-
-            }else{
-
-                LinearLayout nameLay = (LinearLayout)headerView.findViewById(R.id.nameFilterLayout);
-                nameLay.setVisibility(View.GONE);
-
-            }
-            
-            if(values.containsKey(MySQLiteHelper.ROOM)){
-
-                TextView nameView = (TextView)headerView.findViewById(R.id.outRoomFilter);
-                nameView.setText(values.getAsString(MySQLiteHelper.ROOM));
-
-                ImageButton nameButton = (ImageButton)headerView.findViewById(R.id.imageButtonRoomFilter);
-                nameButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        values.remove(MySQLiteHelper.ROOM);
-                        if(values.size() != 0){
-                            drawFilterInterface();
-                        }else{
-                            startActivity(intent);
-                        }
-                    }
-                });
-
-            }else{
-
-                LinearLayout lay = (LinearLayout)headerView.findViewById(R.id.roomFilterLayout);
-                lay.setVisibility(View.GONE);
-
-            }
-
-            if(values.containsKey(MySQLiteHelper.MODEL)){
-
-                TextView nameView = (TextView)headerView.findViewById(R.id.outModelFilter);
-                nameView.setText(values.getAsString(MySQLiteHelper.MODEL));
-
-                ImageButton nameButton = (ImageButton)headerView.findViewById(R.id.imageButtonModelFilter);
-                nameButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        values.remove(MySQLiteHelper.MODEL);
-                        if(values.size() != 0){
-                            drawFilterInterface();
-                        }else{
-                            startActivity(intent);
-                        }
-                    }
-                });
-
-            }else{
-
-                LinearLayout lay = (LinearLayout)headerView.findViewById(R.id.modelFilterLayout);
-                lay.setVisibility(View.GONE);
-
-            }
-
-            if(values.containsKey(MySQLiteHelper.BRAND)){
-
-                TextView nameView = (TextView)headerView.findViewById(R.id.outBrandFilter);
-                nameView.setText(values.getAsString(MySQLiteHelper.BRAND));
-
-                ImageButton nameButton = (ImageButton)headerView.findViewById(R.id.imageButtonBrandFilter);
-                nameButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        values.remove(MySQLiteHelper.BRAND);
-                        if(values.size() != 0){
-                            drawFilterInterface();
-                        }else{
-                            startActivity(intent);
-                        }
-                    }
-                });
-
-            }else{
-
-                LinearLayout lay = (LinearLayout)headerView.findViewById(R.id.brandFilterLayout);
-                lay.setVisibility(View.GONE);
-
-            }
-
-            inside.addView(headerView);
 
             for(Item it : items){
 
