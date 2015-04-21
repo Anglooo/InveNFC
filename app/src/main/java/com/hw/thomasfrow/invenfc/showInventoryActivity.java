@@ -101,7 +101,6 @@ public class showInventoryActivity extends Activity {
 
         List<Item> items = dataSource.getItemsByOwner(ownID);
 
-        System.out.println(items.toString());
         LayoutInflater inflater = LayoutInflater.from(this);
 
         LinearLayout inside = (LinearLayout)findViewById(R.id.list_item);
@@ -116,7 +115,7 @@ public class showInventoryActivity extends Activity {
 
                 TextView outName = (TextView) itemView.findViewById(R.id.nameView);
                 String name = it.getName();
-                if(name.length() > 10 ){
+                if(name.length() > 18 ){
                     name = it.getName().substring(0,7);
                     name = name.concat("...");
                 }
@@ -345,7 +344,6 @@ public class showInventoryActivity extends Activity {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
 
-                        System.out.println("a");
                         EditText nameEdit = (EditText)view2.findViewById(R.id.enterName);
                         EditText roomEdit = (EditText)view2.findViewById(R.id.enterRoom);
                         EditText brandEdit = (EditText)view2.findViewById(R.id.enterBrand);

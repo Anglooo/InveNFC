@@ -57,7 +57,6 @@ public class ItemDataSource {
         Cursor cursor = database.query(MySQLiteHelper.DATABASE_TABLE,
                 allColumns, MySQLiteHelper.ID + " = " + insertId, null,
                 null, null, null);
-        System.out.println(values.toString());
         cursor.moveToFirst();
         Item newItem = cursorToItem(cursor);
         cursor.close();
@@ -66,13 +65,11 @@ public class ItemDataSource {
 
     public void deleteItem(Item item) {
         long id = item.getId();
-        System.out.println("Item deleted with id: " + id);
         database.delete(MySQLiteHelper.DATABASE_TABLE, MySQLiteHelper.ID
                 + " = " + id, null);
     }
 
     public void deleteItemByID(int id) {
-        System.out.println("Item deleted with id: " + id);
         database.delete(MySQLiteHelper.DATABASE_TABLE, MySQLiteHelper.ID
                 + " = " + id, null);
     }
@@ -202,7 +199,10 @@ public class ItemDataSource {
     public Item getItemByID(int id){
         Cursor query = database.rawQuery("SELECT * FROM Items WHERE id = "+id, null);
 
-        System.out.println(query.toString());
+        if(query == null){
+            Log.i("cursor","returned null");
+            return null;
+        }
         query.moveToFirst();
         Item item =  cursorToItem(query);
         query.close();
@@ -212,6 +212,14 @@ public class ItemDataSource {
 
     private Item cursorToItem(Cursor cursor) {
         Item item = new Item();
+
+        //Log.i("cursor",Integer.toString(cursor.getColumnCount()));
+
+        Log.i("cursor",Integer.toString(cursor.getCount()));
+
+        if(cursor.getCount() == 0){
+            return null;
+        }
 
         item.setId(cursor.getInt(0));
         item.setOwnerID(cursor.getString(1));

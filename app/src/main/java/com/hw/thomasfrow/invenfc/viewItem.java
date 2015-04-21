@@ -31,6 +31,7 @@ import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
 import java.io.File;
 
+import com.parse.ParseAnonymousUtils;
 import com.parse.ParseUser;
 
 
@@ -70,103 +71,107 @@ public class viewItem extends Activity{
         SharedPreferences prefs = getApplicationContext().getSharedPreferences("userDetails", Context.MODE_PRIVATE);
         boolean loggedInStatus = false;
 
-        if(currentUser != null){
+        if (ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser())) {
 
+        }else{
+            Log.i("testing"," Current user = null");
             loggedInStatus = true;
-
+            ownID = currentUser.getObjectId();
         }
 
-        ownID = currentUser.getObjectId();
-        Log.i("UserIDView",currentUser.getObjectId());
 
-        if(loggedInStatus != true){
-            new AlertDialog.Builder(this)
-                    .setTitle("You are not logged in.")
-                    .setCancelable(false)
-                    .setView(R.layout.dialog_go_login)
-                    .setPositiveButton("Login",new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
+        if(item == null){
 
-                            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                            intent.putExtra("redirect",true);
-                            intent.putExtra("redirID",id);
-                            startActivity(intent);
-                        }
-                    })
-                    .show();
+            Log.i("Cursor","Gets here");
+
+            Intent intent = new Intent(getApplicationContext(), invenfc.class);
+            startActivity(intent);
+            finish();
+
         }else{
 
-            Log.i("UserIDCompareOwnID",currentUser.getObjectId());
-            Log.i("UserIDCompareOwnID",item.getOwnerID());
-
-
-            if(!ownID.equals(item.getOwnerID())){
+            if (loggedInStatus != true) {
                 new AlertDialog.Builder(this)
-                        .setTitle("Permission Denied")
-                        .setView(R.layout.dialog_not_owner)
+                        .setTitle("You are not logged in.")
                         .setCancelable(false)
-                        .setPositiveButton("View Inventory", new DialogInterface.OnClickListener() {
+                        .setView(R.layout.dialog_go_login)
+                        .setPositiveButton("Login", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
-                                Intent intent = new Intent(getApplicationContext(),showInventoryActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), invenfc.class);
                                 startActivity(intent);
-
                             }
                         })
                         .show();
-            }
+            } else {
 
-        }
+                if (!ownID.equals(item.getOwnerID())) {
+                    new AlertDialog.Builder(this)
+                            .setTitle("Permission Denied")
+                            .setView(R.layout.dialog_not_owner)
+                            .setCancelable(false)
+                            .setPositiveButton("View Inventory", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
 
+                                    Intent intent = new Intent(getApplicationContext(), showInventoryActivity.class);
+                                    startActivity(intent);
 
-
-        updateInterface(id);
-
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-
-        toolbar.inflateMenu(R.menu.menu_view_item);
-
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-
-                switch (menuItem.getItemId()) {
-                    case R.id.action_editItem:
-
-                        editItemInterface();
-
-                        return true;
-
-                    case R.id.action_deleteItem:
-
-                        deleteItemInterface();
-
-                        return true;
+                                }
+                            })
+                            .show();
                 }
 
-                return false;
             }
 
 
-        });
+            updateInterface(id);
+
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+            toolbar.inflateMenu(R.menu.menu_view_item);
+
+            toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+
+                    switch (menuItem.getItemId()) {
+                        case R.id.action_editItem:
+
+                            editItemInterface();
+
+                            return true;
+
+                        case R.id.action_deleteItem:
+
+                            deleteItemInterface();
+
+                            return true;
+                    }
+
+                    return false;
+                }
 
 
+            });
 
-        toolbar.setNavigationIcon(R.mipmap.ic_launcher);
 
-        toolbar.setNavigationOnClickListener(new Toolbar.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            toolbar.setNavigationIcon(R.mipmap.ic_launcher);
 
-                Intent intent = new Intent(getApplicationContext(),showInventoryActivity.class);
-                intent.putExtra("userID",ownID);
-                startActivity(intent);
-            }
-        });
+            toolbar.setNavigationOnClickListener(new Toolbar.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-        drawImageInterface();
+                    Intent intent = new Intent(getApplicationContext(), showInventoryActivity.class);
+                    intent.putExtra("userID", ownID);
+                    startActivity(intent);
+                }
+            });
+
+            drawImageInterface();
+
+        }
 
 
     }
@@ -420,7 +425,6 @@ public class viewItem extends Activity{
                         if(itemHasUpdated){
 
                             if(dataSource.updateItem(item.getId(),updateItem) != 0){
-                                System.out.println(updateItem.toString());
                                 Toast.makeText(getApplicationContext(),"Item updated",Toast.LENGTH_LONG).show();
                                 updateInterface(item.getId());
                             }else{

@@ -2,6 +2,8 @@ package com.hw.thomasfrow.invenfc;
 
 import android.util.Log;
 
+import java.util.Date;
+
 /**
  * Created by thomas on 10/02/15.
  */
@@ -14,7 +16,7 @@ public class Item {
     private String model;
     private String comment;
     private int tag;
-    private int photo;
+    private Date lastUpdated;
 
     public int getId() {
         return id;
@@ -92,6 +94,16 @@ public class Item {
 
             return false;
         }
+    }
+
+    public void setLastUpdated(){
+        Date now = new Date();
+
+        lastUpdated = now;
+    }
+
+    public Date getLastUpdated(){
+        return lastUpdated;
     }
 
     @Override

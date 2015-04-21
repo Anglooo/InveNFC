@@ -76,9 +76,6 @@ public class filteredInventoryActivity extends ActionBarActivity {
         dataSource = new ItemDataSource();
         dataSource.open();
 
-        ImageButton closeFilterButton = (ImageButton)findViewById(R.id.button_close_filter);
-        closeFilterButton.setVisibility(View.VISIBLE);
-
 
         List<Item> items = dataSource.filterItems(ownID, values);
 
@@ -395,7 +392,7 @@ public class filteredInventoryActivity extends ActionBarActivity {
                 .show();
     }
 
-    public void onClick(final View view){
+    public void onClick(View view){
 
         switch (view.getId()) {
             case R.id.button_search:
