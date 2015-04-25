@@ -2,7 +2,6 @@ package com.hw.thomasfrow.invenfc;
 
 
 import android.app.AlertDialog;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -155,7 +154,7 @@ public class showInventoryActivity extends Activity {
                 itemView.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(), viewItem.class);
+                        Intent intent = new Intent(getApplicationContext(), viewItemActivity.class);
                         intent.putExtra("id", id1);
                         startActivity(intent);
                     }
@@ -260,7 +259,7 @@ public class showInventoryActivity extends Activity {
                                 if(editedName.trim().length() == 0){
                                     Toast.makeText(getApplicationContext(),"Please insert a value to filter.",Toast.LENGTH_SHORT).show();
                                 }else{
-                                    updateItem.putString(MySQLiteHelper.NAME,editedName);
+                                    updateItem.putString(SQLiteHelper.NAME,editedName);
                                     itemHasUpdated = true;
 
                                 }
@@ -274,7 +273,7 @@ public class showInventoryActivity extends Activity {
                                 if(editedRoom.trim().length() == 0){
                                     Toast.makeText(getApplicationContext(),"Please insert a value to filter.",Toast.LENGTH_SHORT).show();
                                 }else{
-                                    updateItem.putString(MySQLiteHelper.ROOM,editedRoom);
+                                    updateItem.putString(SQLiteHelper.ROOM,editedRoom);
                                     itemHasUpdated = true;
 
                                 }
@@ -287,7 +286,7 @@ public class showInventoryActivity extends Activity {
                                 if(editedModel.trim().length() == 0){
                                     Toast.makeText(getApplicationContext(),"Please insert a value to filter.",Toast.LENGTH_SHORT).show();
                                 }else{
-                                    updateItem.putString(MySQLiteHelper.MODEL,editedModel);
+                                    updateItem.putString(SQLiteHelper.MODEL,editedModel);
                                     itemHasUpdated = true;
                                 }
                             }
@@ -299,7 +298,7 @@ public class showInventoryActivity extends Activity {
                                 if(editedBrand.trim().length() == 0){
                                     Toast.makeText(getApplicationContext(),"Please insert a value to filter.",Toast.LENGTH_SHORT).show();
                                 }else{
-                                    updateItem.putString(MySQLiteHelper.BRAND,editedBrand);
+                                    updateItem.putString(SQLiteHelper.BRAND,editedBrand);
                                     itemHasUpdated = true;
 
                                 }

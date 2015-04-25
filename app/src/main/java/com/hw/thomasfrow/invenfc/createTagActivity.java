@@ -5,24 +5,20 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.app.PendingIntent;
 import android.content.IntentFilter;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 import android.content.Intent;
 import android.nfc.tech.*;
 import android.nfc.*;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+
 import android.widget.TextView;
 import android.widget.Toolbar;
 
-import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import android.content.IntentFilter.*;
 
@@ -139,7 +135,7 @@ public class createTagActivity extends ActionBarActivity {
         layout.setBackgroundResource(R.color.mat_green);
         outView.setText("Tag has been successfuly created");
         ContentValues updateTag = new ContentValues();
-        updateTag.put(MySQLiteHelper.TAG,1);
+        updateTag.put(SQLiteHelper.TAG,1);
         dataSource.updateItem(id,updateTag);
     }
 

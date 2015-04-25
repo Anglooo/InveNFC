@@ -55,7 +55,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".viewItem"
+            android:name=".viewItemActivity"
             android:exported="true"
             android:label="@string/title_activity_view_item"
             android:theme="@style/AppTheme" >

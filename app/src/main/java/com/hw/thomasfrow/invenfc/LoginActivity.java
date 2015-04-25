@@ -89,7 +89,6 @@ public class LoginActivity extends Activity{
                     new LogInCallback() {
                         public void done(ParseUser user, ParseException e) {
                             if (user != null) {
-                                // If user exist and authenticated, send user to Welcome.class
                                 loginSuccess(user.getObjectId());
                             } else {
                                 Toast.makeText(
@@ -119,7 +118,7 @@ public class LoginActivity extends Activity{
         if(redirect){
             int redirID = getIntent().getExtras().getInt("redirID");
 
-            Intent intent = new Intent(this, viewItem.class);
+            Intent intent = new Intent(this, viewItemActivity.class);
             intent.putExtra("id", redirID);
             startActivity(intent);
 

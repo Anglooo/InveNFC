@@ -7,7 +7,6 @@ package com.hw.thomasfrow.invenfc;
         import java.util.List;
 
         import android.content.ContentValues;
-        import android.content.Context;
         import android.database.Cursor;
         import android.database.SQLException;
         import android.database.sqlite.SQLiteDatabase;
@@ -16,20 +15,20 @@ package com.hw.thomasfrow.invenfc;
 public class ItemDataSource {
 
     private SQLiteDatabase database;
-    private MySQLiteHelper dbHelper;
+    private SQLiteHelper dbHelper;
     private String[] allColumns = {
-            MySQLiteHelper.ID,
-            MySQLiteHelper.OWNERID,
-            MySQLiteHelper.NAME,
-            MySQLiteHelper.ROOM,
-            MySQLiteHelper.BRAND,
-            MySQLiteHelper.MODEL,
-            MySQLiteHelper.COMMENT,
-            MySQLiteHelper.TAG,
-            MySQLiteHelper.PHOTO};
+            SQLiteHelper.ID,
+            SQLiteHelper.OWNERID,
+            SQLiteHelper.NAME,
+            SQLiteHelper.ROOM,
+            SQLiteHelper.BRAND,
+            SQLiteHelper.MODEL,
+            SQLiteHelper.COMMENT,
+            SQLiteHelper.TAG,
+            SQLiteHelper.PHOTO};
 
     public ItemDataSource() {
-        dbHelper = new MySQLiteHelper(invenfc.getAppContext());
+        dbHelper = new SQLiteHelper(invenfc.getAppContext());
     }
     
     public void open() throws SQLException {
@@ -42,20 +41,20 @@ public class ItemDataSource {
 
     public Item createItem(String ownerID, String name, String room, String brand, String model, String comment ) {
         ContentValues values = new ContentValues();
-        values.put(MySQLiteHelper.OWNERID, ownerID);
-        values.put(MySQLiteHelper.NAME, name);
-        values.put(MySQLiteHelper.ROOM, room);
-        values.put(MySQLiteHelper.BRAND, brand);
-        values.put(MySQLiteHelper.MODEL, model);
-        values.put(MySQLiteHelper.COMMENT, comment);
-        values.put(MySQLiteHelper.TAG,0);
-        values.put(MySQLiteHelper.PHOTO,0);
+        values.put(SQLiteHelper.OWNERID, ownerID);
+        values.put(SQLiteHelper.NAME, name);
+        values.put(SQLiteHelper.ROOM, room);
+        values.put(SQLiteHelper.BRAND, brand);
+        values.put(SQLiteHelper.MODEL, model);
+        values.put(SQLiteHelper.COMMENT, comment);
+        values.put(SQLiteHelper.TAG,0);
+        values.put(SQLiteHelper.PHOTO,0);
 
 
-        long insertId = database.insert(MySQLiteHelper.DATABASE_TABLE, null,
+        long insertId = database.insert(SQLiteHelper.DATABASE_TABLE, null,
                 values);
-        Cursor cursor = database.query(MySQLiteHelper.DATABASE_TABLE,
-                allColumns, MySQLiteHelper.ID + " = " + insertId, null,
+        Cursor cursor = database.query(SQLiteHelper.DATABASE_TABLE,
+                allColumns, SQLiteHelper.ID + " = " + insertId, null,
                 null, null, null);
         cursor.moveToFirst();
         Item newItem = cursorToItem(cursor);
@@ -65,19 +64,19 @@ public class ItemDataSource {
 
     public void deleteItem(Item item) {
         long id = item.getId();
-        database.delete(MySQLiteHelper.DATABASE_TABLE, MySQLiteHelper.ID
+        database.delete(SQLiteHelper.DATABASE_TABLE, SQLiteHelper.ID
                 + " = " + id, null);
     }
 
     public void deleteItemByID(int id) {
-        database.delete(MySQLiteHelper.DATABASE_TABLE, MySQLiteHelper.ID
+        database.delete(SQLiteHelper.DATABASE_TABLE, SQLiteHelper.ID
                 + " = " + id, null);
     }
 
     public List<Item> getAllItems() {
         List<Item> items = new ArrayList<Item>();
 
-        Cursor cursor = database.query(MySQLiteHelper.DATABASE_TABLE,
+        Cursor cursor = database.query(SQLiteHelper.DATABASE_TABLE,
                 allColumns, null, null, null, null, null);
 
         cursor.moveToFirst();
@@ -235,7 +234,7 @@ public class ItemDataSource {
 
     public int updateItem(int ID, ContentValues content){
 
-        int success = database.update(MySQLiteHelper.DATABASE_TABLE, content, MySQLiteHelper.ID+"="+ID, null);
+        int success = database.update(SQLiteHelper.DATABASE_TABLE, content, SQLiteHelper.ID+"="+ID, null);
 
         return success;
     }

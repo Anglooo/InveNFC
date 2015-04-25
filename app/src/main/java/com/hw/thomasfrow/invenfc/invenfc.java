@@ -7,7 +7,6 @@ import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.NdefMessage;
@@ -16,11 +15,8 @@ import android.nfc.NdefRecord;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.parse.Parse;
 import com.parse.ParseUser;
-import com.parse.ParseACL;
 import com.parse.ParseAnonymousUtils;
-import com.parse.ParseObject;
 
 
 public class invenfc extends Activity {
@@ -49,7 +45,7 @@ public class invenfc extends Activity {
             }else{
                 Log.i("NFCREAD","Should start intent with id");
                 Log.i("NFCREAD",Integer.toString(itemID));
-                Intent intentStart = new Intent(this, viewItem.class);
+                Intent intentStart = new Intent(this, viewItemActivity.class);
                 intentStart.putExtra("id",itemID);
                 startActivity(intentStart);
 
@@ -65,7 +61,7 @@ public class invenfc extends Activity {
 
                 Log.i("NFCREAD","Should start intent with id");
                 Log.i("NFCREAD",Integer.toString(itemID));
-                Intent intent = new Intent(this, viewItem.class);
+                Intent intent = new Intent(this, viewItemActivity.class);
                 intent.putExtra("id",itemID);
                 startActivity(intent);
             }
