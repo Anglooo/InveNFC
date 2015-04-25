@@ -24,4 +24,4 @@ public void onCreate(){
 
     ParseACL.setDefaultACL(defaultACL, true);
 }
-}S
+}
